@@ -113,7 +113,7 @@ If ($DefaultUserSettings.count -gt 0)
 }
 
 # Restart the previously closed Explorer.exe process
-Start-Process -FilePath C:\Windows\Explorer.exe -Wait #NOTE: Why are we doing this?
+Start-Process -FilePath C:\Windows\Explorer.exe -Wait 
 #endregion
 
 #region Disable Windows Traces
@@ -139,7 +139,7 @@ If ($DisableAutologgers.count -gt 0)
 #   * change the "Enable Windows NTP Client" setting.
 #   * set the "Select when Quality Updates are received" policy
 
-if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe")) #NOTE: This is not going to work and needs to be put into a folder in the $PSScriptRoot folder
+if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe")) 
 {
     Start-Process (Join-Path $PSScriptRoot "LGPO\LGPO.exe") -ArgumentList "/g $((Join-Path $PSScriptRoot "LGPO\VDI_OptimalSettings"))" -Wait
 }
@@ -166,25 +166,16 @@ If ($ServicesToDisable.count -gt 0)
 #region Disk Cleanup
 #################### BEGIN: DISK CLEANUP section ###########################
 # Delete not in-use *.tmp files
-#NOTE to Tim - This needs to be fixed, there is a much better way to do it
 
 $FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl -Recurse -ErrorAction SilentlyContinue
 $FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
 
-<# Not needed because of $FilesToRemove including all tmp and etl files
-Start-Process C:\Windows\System32\CMD.exe -ArgumentList "/C DEL C:\*.tmp /S /F" -Wait
-
-# Delete not in-use *.etl files
-Start-Process C:\Windows\System32\CMD.exe -ArgumentList "/C DEL C:\*.etl /S /F" -Wait
-#>
 
 # Delete not in-use anything in your %temp% folder
 Remove-Item -Path $env:TEMP\*.* -Recurse
-#Start-Process C:\Windows\System32\CMD.exe -ArgumentList "/C DEL %temp%\. /S /F /Q" -Wait
 
 # Delete not in-use anything in the C:\Windows\Temp folder
 Remove-Item -Path $env:windir\Temp\*.* -Recurse 
-#Start-Process C:\Windows\System32\CMD.exe -ArgumentList "/C DEL C:\Windows\Temp\. /S /F /Q" -Wait
 
 # Disk Cleanup Wizard automation (Cleanmgr.exe /SAGESET:11)
 # If you prefer to skip a particular disk cleanup category, edit the "DiskCleanRegSettings.txt"
