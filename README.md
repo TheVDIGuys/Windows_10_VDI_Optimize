@@ -1,20 +1,29 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+Automatically apply setting referenced in white paper:
+                  "Optimizing Windows 10, Build 1803, for a Virtual Desktop Infrastructure (VDI) role"
+                  URL: TBD 
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+ DEPENDENCIES    1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319)
+                 2. Previously saved local group policy settings, available on the GitHub site where this script is located
+                 3. This PowerShell script
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+- REFERENCES:
+https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6
+https://blogs.technet.microsoft.com/secguide/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0/
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-6
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6
+https://msdn.microsoft.com/en-us/library/cc422938.aspx
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+- Appx package cleanup                 - Complete
+- Scheduled tasks                      - Complete
+- Automatic Windows traces             - Complete
+- OneDrive cleanup                     - Complete
+- Local group policy                   - Complete
+- System services                      - Complete
+- Disk cleanup                         - Complete
+- Default User Profile Customization   - Complete
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+This script is dependant on three elements:
+LGPO Settings folder, applied with the LGPO.exe Microsoft app
