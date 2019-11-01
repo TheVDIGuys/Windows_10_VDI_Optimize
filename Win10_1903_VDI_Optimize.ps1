@@ -1,10 +1,10 @@
 #Requires -RunAsAdministrator
 <#
-- TITLE:          Microsoft Windows 1803  VDI Cleanup Script
+- TITLE:          Microsoft Windows 1903  VDI Cleanup Script
 - AUTHORED BY:    Robert M. Smith, and Tim Muessig
-- AUTHORED DATE:  01/10/2019
+- AUTHORED DATE:  11/01/2019
 - PURPOSE:        To automatically apply setting referenced in white paper:
-                  "Optimizing Windows 10, Build 1803, for a Virtual Desktop Infrastructure (VDI) role"
+                  "Optimizing Windows 10, Build 1903, for a Virtual Desktop Infrastructure (VDI) role"
                   URL: TBD
 
 - DEPENDENCIES    1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319)
