@@ -44,7 +44,7 @@ Set-Location $PSScriptRoot
 
 If (Test-Path .\AppXPackages.txt)
 {
-    $AppxPackage = Get-Content .\AppXPackages.txt
+    $AppxPackage = Get-Content .\Win10_1903_AppxPackages.txt
 }
 
 If ($AppxPackage.Count -gt 0)
