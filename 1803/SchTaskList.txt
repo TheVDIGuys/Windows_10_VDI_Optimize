@@ -1,0 +1,56 @@
+OneDrive Standalone Update Task v2
+Microsoft Compatibility Appraiser
+ProgramDataUpdater
+StartupAppTask
+CleanupTemporaryState
+Proxy
+UninstallDeviceTask
+ProactiveScan
+Consolidator
+UsbCeip
+Data Integrity Scan
+Data Integrity Scan for Crash Recovery
+ScheduledDefrag
+SilentCleanup
+Microsoft-Windows-DiskDiagnosticDataCollector
+Diagnostics
+StorageSense
+DmClient
+DmClientOnScenarioDownload
+File History (maintenance mode)
+ScanForUpdates
+ScanForUpdatesAsUser
+SmartRetry
+Notifications
+WindowsActionDialog
+WinSAT
+Cellular
+MapsToastTask
+ProcessMemoryDiagnosticEvents
+RunFullMemoryDiagnostic
+MNO Metadata Parser
+LPRemove
+GatherNetworkInfo
+WiFiTask
+Sqm-Tasks
+AnalyzeSystem
+MobilityManager
+VerifyWinRE
+RegIdleBackup
+FamilySafetyMonitor
+FamilySafetyRefreshTask
+IndexerAutomaticMaintenance
+SpaceAgentTask
+SpaceManagerTask
+HeadsetButtonPress
+SpeechModelDownloadTask
+ResPriStaticDbSync
+WsSwapAssessmentTask
+SR
+SynchronizeTimeZone
+Usb-Notifications
+QueueReporting
+UpdateLibrary
+Scheduled Start
+sih
+XblGameSaveTask
