@@ -8,8 +8,9 @@
                   URL: TBD
 
 - DEPENDENCIES    1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319)
-                  2. Previously saved local group policy settings, available on the GitHub site where this script is located
+                  2. LGPO database files available on the GitHub site where this script is located
                   3. This PowerShell script
+                  4. The text input files containing all the apps, services, traces, etc.
 
 - REFERENCES:
 https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx
@@ -34,15 +35,23 @@ LGPO Settings folder, applied with the LGPO.exe Microsoft app
 
 
 
-the following is the list of almost all the UWP application packages that can be removed with PowerShell, interactively.  
+The UWP app input file contains the list of almost all the UWP application packages that can be removed with PowerShell interactively.  
 The Store and a few others, such as Wallet, were left off intentionally.  Though it is possible to remove the Store app, 
 it is nearly impossible to get it back.  Please review the lists below and comment out or remove references to packages that you do not want to remove.
 #>
 
+#region Disable, then remove, Windows Media Player including payload
+    
+        Disable-WindowsOptionalFeature -Online -FeatureName “WindowsMediaPlayer”
+        Remove-WindowsPackage -PackageName Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.1 -Online
+        Remove-WindowsPackage -PackageName Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.449 -Online
+
+#endregion
+
 #region Begin Clean APPX Packages
 Set-Location $PSScriptRoot
 
-If (Test-Path .\AppXPackages.txt)
+If (Test-Path .\Win10_1903_AppxPackages.txt)
 {
     $AppxPackage = Get-Content .\Win10_1903_AppxPackages.txt
 }
@@ -63,9 +72,9 @@ If ($AppxPackage.Count -gt 0)
 
 # This section is for disabling scheduled tasks.  If you find a task that should not be disabled
 # comment or delete from the "SchTaskList.txt" file.
-If (Test-Path .\SchTaskList.txt)
+If (Test-Path .\Win10_1903_SchTaskList.txt)
 {
-    $SchTasksList = Get-Content .\SchTaskList.txt
+    $SchTasksList = Get-Content .\Win10_1903_SchTaskList.txt
 }
 If ($SchTasksList.count -gt 0)
 {
@@ -100,9 +109,9 @@ Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\AppData\Roaming\Mic
 # Remove the automatic start item for OneDrive from the default user profile registry hive
 # and while NTUSER.DAT is open, apply appearance customizations, then close hive file
 
-If (Test-Path .\DefaultUserSettings.txt)
+If (Test-Path .\Win10_1903_DefaultUserSettings.txt)
 {
-    $DefaultUserSettings = Get-Content .\DefaultUserSettings.txt
+    $DefaultUserSettings = Get-Content .\Win10_1903_DefaultUserSettings.txt
 }
 If ($DefaultUserSettings.count -gt 0)
 {
@@ -117,9 +126,9 @@ Start-Process -FilePath C:\Windows\Explorer.exe -Wait
 #endregion
 
 #region Disable Windows Traces
-If (Test-Path .\ServicesAutologgers.txt)
+If (Test-Path .\Win10_1093_ServicesAutologgersDisable.txt)
 {
-    $DisableAutologgers = Get-Content .\ServicesAutologgers.txt
+    $DisableAutologgers = Get-Content .\Win10_1093_ServicesAutologgersDisable.txt
 }
 
 If ($DisableAutologgers.count -gt 0)
@@ -147,10 +156,10 @@ if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe"))
 
 #region Disable Services
 #################### BEGIN: DISABLE SERVICES section ###########################
-If (Test-Path .\ServicesDisable.txt)
+If (Test-Path .\Win10_1903_ServicesDisable.txt)
  
 {
-    $ServicesToDisable = Get-Content .\ServicesDisable.txt
+    $ServicesToDisable = Get-Content .\Win10_1903_ServicesDisable.txt
 }
 
 If ($ServicesToDisable.count -gt 0)
@@ -178,10 +187,10 @@ Remove-Item -Path $env:TEMP\*.* -Recurse
 Remove-Item -Path $env:windir\Temp\*.* -Recurse 
 
 # Disk Cleanup Wizard automation (Cleanmgr.exe /SAGESET:11)
-# If you prefer to skip a particular disk cleanup category, edit the "DiskCleanRegSettings.txt"
-If (Test-Path .\DiskCleanRegSettings.txt)
+# If you prefer to skip a particular disk cleanup category, edit the "Win10_1903_DiskCleanRegSettings.txt"
+If (Test-Path .\Win10_1903_DiskCleanRegSettings.txt)
 {
-    $DiskCleanupSettings = Get-Content .\DiskCleanRegSettings.txt
+    $DiskCleanupSettings = Get-Content .\Win10_1903_DiskCleanRegSettings.txt
 }
 If ($DiskCleanupSettings.count -gt 0)
 {
