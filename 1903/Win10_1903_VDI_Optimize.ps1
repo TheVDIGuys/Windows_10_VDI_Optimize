@@ -42,9 +42,14 @@ it is nearly impossible to get it back.  Please review the lists below and comme
 
 #region Disable, then remove, Windows Media Player including payload
     
-        Disable-WindowsOptionalFeature -Online -FeatureName “WindowsMediaPlayer”
-        Remove-WindowsPackage -PackageName Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.1 -Online
-        Remove-WindowsPackage -PackageName Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.449 -Online
+Try
+{
+    Disable-WindowsOptionalFeature -Online -FeatureName â€œWindowsMediaPlayerâ€ 
+    Get-WindowsPackage -Online -PackageName "*Windows-mediaplayer*" | ForEach-Object { Remove-WindowsPackage -PackageName $_.PackageName -Online -ErrorAction SilentlyContinue }
+}
+Catch { }
+#Remove-WindowsPackage -PackageName "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.1" -Online
+#Remove-WindowsPackage -PackageName "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.449" -Online
 
 #endregion
 
@@ -80,7 +85,8 @@ If ($SchTasksList.count -gt 0)
 {
     Foreach ($Item in $SchTasksList)
     {
-        Get-ScheduledTask | Where-Object {$_.TaskName -like "$($Item.trim())"} | Disable-ScheduledTask
+        $Task = (($Item -split ":")[0]).Trim()
+        Get-ScheduledTask | Where-Object { $_.TaskName -like "*$Task*" } | Disable-ScheduledTask
     }
 }
 #endregion
@@ -219,5 +225,13 @@ by querying in PowerShell using Get-NetAdapterAdvancedProperty, and then adjusti
 Set-NetAdapterAdvancedProperty command.
 #>
 #endregion
+Add-Type -AssemblyName PresentationFramework
+$Answer = [System.Windows.MessageBox]::Show("Reboot to make changes effective?", "Restart Computer", "YesNo", "Question")
+Switch ($Answer)
+{
+    "Yes"   { Write-Warning "Restarting Computer in 10 Seconds"; Start-sleep -seconds 10; Restart-Computer -Force }
+    "No"    { Write-Warning "A reboot is required for all changed to take effect" }
+    Default { Write-Warning "A reboot is required for all changed to take effect" }
+}
 
 ########################  END OF SCRIPT  ########################

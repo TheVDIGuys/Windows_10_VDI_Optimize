@@ -1,4 +1,4 @@
-*OneDrive*										:OneDrive task
+OneDrive										:OneDrive task
 Cellular										:Management\Provisioning task
 Consolidator									:If the user has consented to participate in the Windows CEIP, this job collects and sends usage data to Microsoft.									
 Diagnostics										:DiskFootprint task
