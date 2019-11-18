@@ -1,4 +1,3 @@
-OneDrive
 Cellular
 Consolidator
 Diagnostics
@@ -6,9 +5,9 @@ FamilySafetyMonitor
 FamilySafetyRefreshTask
 MaintenanceTasks
 MapsToastTask
-"Microsoft Compatibility Appraiser"
+*Compatibility*
 Microsoft-Windows-DiskDiagnosticDataCollector
-"MNO Metadata Parser"
+*MNO*
 NotificationTask
 PerformRemediation
 ProactiveScan
@@ -25,10 +24,7 @@ ResPriStaticDbSync
 RunFullMemoryDiagnostic
 ScanForUpdates
 ScanForUpdatesAsUser
-"Schedule Scan"
-"Schedule Scan Static Task"
 Scheduled
-"Scheduled Start"
 ScheduledDefrag
 sihpostreboot
 SilentCleanup
@@ -42,20 +38,18 @@ StartComponentCleanup
 StartupAppTask
 StorageSense
 SyspartRepair
-"Sysprep Generalize Drivers"
+*Sysprep*
 UninstallDeviceTask
-"Universal Orchestrator Start"
+*Orchestrator*
 UpdateLibrary
 UpdateModelTask
 UsbCeip
 Usb-Notifications
 USO_UxBroker
-WiFiTask
-WiFiTask
+*WiFi*
 WIM-Hash-Management
 WindowsActionDialog
 WinSAT
-"Work Folders Logon Synchronization"
-"Work Folders Maintenance Work"
+*Folders*
 WsSwapAssessmentTask
 XblGameSaveTask
