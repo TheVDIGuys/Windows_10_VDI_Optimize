@@ -156,7 +156,7 @@ If ($DisableAutologgers.count -gt 0)
 
 if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe")) 
 {
-    Start-Process (Join-Path $PSScriptRoot "LGPO\LGPO.exe") -ArgumentList "/g $((Join-Path $PSScriptRoot "LGPO\VDI_OptimalSettings"))" -Wait
+    Start-Process (Join-Path $PSScriptRoot "LGPO\LGPO.exe") -ArgumentList "/g $((Join-Path $PSScriptRoot "LGPO\."))" -Wait
 }
 #endregion
 
