@@ -132,9 +132,9 @@ Start-Process -FilePath C:\Windows\Explorer.exe -Wait
 #endregion
 
 #region Disable Windows Traces
-If (Test-Path .\Win10_1093_ServicesAutologgersDisable.txt)
+If (Test-Path .\Win10_1903_ServicesAutologgersDisable.txt)
 {
-    $DisableAutologgers = Get-Content .\Win10_1093_ServicesAutologgersDisable.txt
+    $DisableAutologgers = Get-Content .\Win10_1903_ServicesAutologgersDisable.txt
 }
 
 If ($DisableAutologgers.count -gt 0)
