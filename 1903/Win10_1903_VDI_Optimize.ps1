@@ -1,4 +1,6 @@
 #Requires -RunAsAdministrator
+[CmdletBinding()]
+Param()
 <#
 - TITLE:          Microsoft Windows 1903  VDI Cleanup Script
 - AUTHORED BY:    Robert M. Smith, and Tim Muessig
@@ -42,14 +44,8 @@ it is nearly impossible to get it back.  Please review the lists below and comme
 
 #region Disable, then remove, Windows Media Player including payload
     
-Try
-{
-    Disable-WindowsOptionalFeature -Online -FeatureName “WindowsMediaPlayer” 
-    Get-WindowsPackage -Online -PackageName "*Windows-mediaplayer*" | ForEach-Object { Remove-WindowsPackage -PackageName $_.PackageName -Online -ErrorAction SilentlyContinue }
-}
-Catch { }
-#Remove-WindowsPackage -PackageName "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.1" -Online
-#Remove-WindowsPackage -PackageName "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.449" -Online
+Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer"
+Get-WindowsPackage -Online -PackageName "*Windows-mediaplayer*" | ForEach-Object { Remove-WindowsPackage -PackageName $_.PackageName -Online -ErrorAction SilentlyContinue }
 
 #endregion
 
@@ -66,9 +62,9 @@ If ($AppxPackage.Count -gt 0)
     Foreach ($Item in $AppxPackage)
     {
         $Package = "*$Item*"
-        Get-AppxPackage                    | Where-Object {$_.PackageFullName -like $Package} | Remove-AppxPackage
-        Get-AppxPackage -AllUsers          | Where-Object {$_.PackageFullName -like $Package} | Remove-AppxPackage -AllUsers
-        Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -like $Package}     | Remove-AppxProvisionedPackage -Online
+        Get-AppxPackage | Where-Object { $_.PackageFullName -like $Package } | Remove-AppxPackage
+        Get-AppxPackage -AllUsers | Where-Object { $_.PackageFullName -like $Package } | Remove-AppxPackage -AllUsers
+        Get-AppxProvisionedPackage -Online | Where-Object { $_.PackageName -like $Package } | Remove-AppxProvisionedPackage -Online
     }
 }
 #endregion
@@ -229,8 +225,8 @@ Add-Type -AssemblyName PresentationFramework
 $Answer = [System.Windows.MessageBox]::Show("Reboot to make changes effective?", "Restart Computer", "YesNo", "Question")
 Switch ($Answer)
 {
-    "Yes"   { Write-Warning "Restarting Computer in 10 Seconds"; Start-sleep -seconds 10; Restart-Computer -Force }
-    "No"    { Write-Warning "A reboot is required for all changed to take effect" }
+    "Yes" { Write-Warning "Restarting Computer in 10 Seconds"; Start-sleep -seconds 10; Restart-Computer -Force }
+    "No" { Write-Warning "A reboot is required for all changed to take effect" }
     Default { Write-Warning "A reboot is required for all changed to take effect" }
 }
 
