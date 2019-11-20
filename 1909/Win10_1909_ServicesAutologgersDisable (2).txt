@@ -1,0 +1,13 @@
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AppModel\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\CloudExperienceHostOOBE\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\DiagLog\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\NtfsLog\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\ReadyBoot\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\TileStore\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\TPM\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\UBPM\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WDIContextLog\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WiFiDriverIHVSession\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WiFiSession\
+HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WinPhoneCritical\
