@@ -5,7 +5,6 @@ HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\DiagLog\
 HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\NtfsLog\
 HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\ReadyBoot\
 HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\TileStore\
-HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\TPM\
 HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\UBPM\
 HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WDIContextLog\
 HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WiFiDriverIHVSession\
