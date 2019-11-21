@@ -40,7 +40,6 @@ StorageSense
 SyspartRepair
 *Sysprep*
 UninstallDeviceTask
-*Orchestrator*
 UpdateLibrary
 UpdateModelTask
 UsbCeip
