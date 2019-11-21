@@ -27,3 +27,8 @@ https://msdn.microsoft.com/en-us/library/cc422938.aspx
 
 This script is dependant on three elements:
 LGPO Settings folder, applied with the LGPO.exe Microsoft app
+
+CHANGE HISTORY
+- Updated user profile settings to include setting background to blue, so not too much black
+- Updated services input file for service names instead of registry locations
+- Disabling services using the Service Control Manager tool 'SC.EXE', not setting registry entries manually
