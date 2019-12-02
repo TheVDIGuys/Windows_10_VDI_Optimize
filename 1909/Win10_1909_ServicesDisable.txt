@@ -2,6 +2,7 @@ autotimesvc
 BcastDVRUserService
 CDPSvc
 CDPUserSvc
+CscService
 defragsvc
 DiagSvc
 DiagTrack
