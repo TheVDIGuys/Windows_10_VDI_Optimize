@@ -38,16 +38,15 @@ The Store and a few others, such as Wallet, were left off intentionally.  Though
 it is nearly impossible to get it back.  Please review the lists below and comment out or remove references to packages that you do not want to remove.
 #>
 
+Set-Location $PSScriptRoot
 #region Disable, then remove, Windows Media Player including payload
     
 Try
 {
-    Disable-WindowsOptionalFeature -Online -FeatureName “WindowsMediaPlayer” 
+    Disable-WindowsOptionalFeature -Online -FeatureName WindowsMediaPlayer 
     Get-WindowsPackage -Online -PackageName "*Windows-mediaplayer*" | ForEach-Object { Remove-WindowsPackage -PackageName $_.PackageName -Online -ErrorAction SilentlyContinue }
 }
 Catch { }
-#Remove-WindowsPackage -PackageName "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.1" -Online
-#Remove-WindowsPackage -PackageName "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~~10.0.18362.449" -Online
 
 #endregion
 
@@ -171,7 +170,9 @@ If ($ServicesToDisable.count -gt 0)
     Foreach ($Item in $ServicesToDisable)
     {
         Write-Host "Processing $Item"
-        New-ItemProperty -Path "$Item" -Name "Start" -PropertyType "DWORD" -Value "4" -Force
+        Stop-Service $Item -Force -ErrorAction SilentlyContinue
+        Set-Service $Item -StartupType Disabled 
+        #New-ItemProperty -Path "$Item" -Name "Start" -PropertyType "DWORD" -Value "4" -Force
     }
 }
 #endregion
@@ -223,6 +224,7 @@ by querying in PowerShell using Get-NetAdapterAdvancedProperty, and then adjusti
 Set-NetAdapterAdvancedProperty command.
 #>
 #endregion
+
 Add-Type -AssemblyName PresentationFramework
 $Answer = [System.Windows.MessageBox]::Show("Reboot to make changes effective?", "Restart Computer", "YesNo", "Question")
 Switch ($Answer)
