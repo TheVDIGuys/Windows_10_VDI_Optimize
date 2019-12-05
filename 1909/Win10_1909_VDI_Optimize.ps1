@@ -10,7 +10,9 @@
 - DEPENDENCIES    1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319)
                   2. LGPO database files available on the GitHub site where this script is located
                   3. This PowerShell script
-                  4. The text input files containing all the apps, services, traces, etc.
+                  4. The text input files containing all the apps, services, traces, etc. that you...
+                     may be interested in disabling. Please review these input files to customize...
+                     to your environment/requirements
 
 - REFERENCES:
 https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx
