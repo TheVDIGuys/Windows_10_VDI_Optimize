@@ -233,6 +233,12 @@ Set-NetAdapterAdvancedProperty command.
 #>
 #endregion
 
+# Delete not in-use anything in the C:\Windows\Temp folder
+Remove-Item -Path $env:windir\*.evtx -Recurse 
+
+# Delete not in-use anything in the C:\Windows\Temp folder
+Remove-Item -Path $env:windir\*.etl -Recurse 
+
 Add-Type -AssemblyName PresentationFramework
 $Answer = [System.Windows.MessageBox]::Show("Reboot to make changes effective?", "Restart Computer", "YesNo", "Question")
 Switch ($Answer)
