@@ -23,10 +23,8 @@ SysMain
 TabletInputService
 UsoSvc
 VSS
-WaaSMedicSvc
 WdiSystemHost
 WerSvc
-WMPNetworkSvc
 WSearch
 XblAuthManager
 XblGameSave
