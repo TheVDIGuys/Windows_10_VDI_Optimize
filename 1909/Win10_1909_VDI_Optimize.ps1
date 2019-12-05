@@ -53,7 +53,7 @@ Catch { }
 #region Begin Clean APPX Packages
 Set-Location $PSScriptRoot
 
-If (Test-Path .\Win10_1903_AppxPackages.txt)
+If (Test-Path .\Win10_1909_AppxPackages.txt)
 {
     $AppxPackage = Get-Content .\Win10_1909_AppxPackages.txt
 }
@@ -190,6 +190,12 @@ Remove-Item -Path $env:TEMP\*.* -Recurse
 
 # Delete not in-use anything in the C:\Windows\Temp folder
 Remove-Item -Path $env:windir\Temp\*.* -Recurse 
+
+# Delete not in-use .EVTX (event log files)
+Remove-Item -Path $env:windir\*.evtx -Recurse 
+
+# Delete not in-use .ETL (ETW trace files)
+Remove-Item -Path $env:windir\*.etl -Recurse 
 
 # Disk Cleanup Wizard automation (Cleanmgr.exe /SAGESET:11)
 # If you prefer to skip a particular disk cleanup category, edit the "Win10_1909_DiskCleanRegSettings.txt"
