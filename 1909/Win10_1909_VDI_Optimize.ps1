@@ -181,17 +181,7 @@ If ($ServicesToDisable.count -gt 0)
 
 #region Disk Cleanup
 #################### BEGIN: DISK CLEANUP section ###########################
-# Delete not in-use files in locations C:\Windows\Temp and %temp%
-# Also sweep and delete *.tmp, *.etl, *.evtx (not in use==not needed)
 
-$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl, *.evtx -Recurse -ErrorAction SilentlyContinue
-$FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
-
-# Delete not in-use anything in the C:\Windows\Temp folder
-Remove-Item -Path $env:windir\Temp\* -Recurse 
-
-# Delete not in-use anything in your %temp% folder
-Remove-Item -Path $env:TEMP\* -Recurse
 
 # Disk Cleanup Wizard automation (Cleanmgr.exe /SAGESET:11)
 # If you prefer to skip a particular disk cleanup category, edit the "Win10_1909_DiskCleanRegSettings.txt"
@@ -227,11 +217,26 @@ Set-NetAdapterAdvancedProperty command.
 #>
 #endregion
 
+#region
+# ADDITIONAL DISK CLEANUP
+# Delete not in-use files in locations C:\Windows\Temp and %temp%
+# Also sweep and delete *.tmp, *.etl, *.evtx (not in use==not needed)
+
+$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl, *.evtx -Recurse -Force -ErrorAction Continue
+$FilesToRemove | Remove-Item -ErrorAction Continue
+
+# Delete not in-use anything in the C:\Windows\Temp folder
+Remove-Item -Path $env:windir\Temp\* -Recurse -Force -ErrorAction Continue
+
+# Delete not in-use anything in your %temp% folder
+Remove-Item -Path $env:TEMP\* -Recurse -Force -ErrorAction Continue
+#endregion
+
 Add-Type -AssemblyName PresentationFramework
 $Answer = [System.Windows.MessageBox]::Show("Reboot to make changes effective?", "Restart Computer", "YesNo", "Question")
 Switch ($Answer)
 {
-    "Yes"   { Write-Warning "Restarting Computer in 10 Seconds"; Start-sleep -seconds 10; Restart-Computer -Force }
+    "Yes"   { Write-Warning "Restarting Computer in 15 Seconds"; Start-sleep -seconds 15; Restart-Computer -Force }
     "No"    { Write-Warning "A reboot is required for all changed to take effect" }
     Default { Write-Warning "A reboot is required for all changed to take effect" }
 }
