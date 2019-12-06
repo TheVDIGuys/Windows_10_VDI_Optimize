@@ -2,7 +2,7 @@
 Automatically apply setting referenced in white paper:
                   "Optimizing Windows 10 for a Virtual Desktop Infrastructure (VDI) role"
                   URL: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-vdi-recommendations-1803 
-                  URL: Update once later version are published on docs.microsoft.com
+                  URL: Update once later versions are published on docs.microsoft.com
 
 # Getting Started
  DEPENDENCIES    1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319)
