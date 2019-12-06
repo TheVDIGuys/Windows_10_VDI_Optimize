@@ -181,23 +181,17 @@ If ($ServicesToDisable.count -gt 0)
 
 #region Disk Cleanup
 #################### BEGIN: DISK CLEANUP section ###########################
-# Delete not in-use *.tmp files
+# Delete not in-use files in locations C:\Windows\Temp and %temp%
+# Also sweep and delete *.tmp, *.etl, *.evtx (not in use==not needed)
 
-$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl -Recurse -ErrorAction SilentlyContinue
+$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl, *.evtx -Recurse -ErrorAction SilentlyContinue
 $FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
 
+# Delete not in-use anything in the C:\Windows\Temp folder
+Remove-Item -Path $env:windir\Temp\* -Recurse 
 
 # Delete not in-use anything in your %temp% folder
-Remove-Item -Path $env:TEMP\*.* -Recurse
-
-# Delete not in-use anything in the C:\Windows\Temp folder
-Remove-Item -Path $env:windir\Temp\*.* -Recurse 
-
-# Delete not in-use .EVTX (event log files)
-Remove-Item -Path $env:windir\*.evtx -Recurse 
-
-# Delete not in-use .ETL (ETW trace files)
-Remove-Item -Path $env:windir\*.etl -Recurse 
+Remove-Item -Path $env:TEMP\* -Recurse
 
 # Disk Cleanup Wizard automation (Cleanmgr.exe /SAGESET:11)
 # If you prefer to skip a particular disk cleanup category, edit the "Win10_1909_DiskCleanRegSettings.txt"
@@ -232,12 +226,6 @@ by querying in PowerShell using Get-NetAdapterAdvancedProperty, and then adjusti
 Set-NetAdapterAdvancedProperty command.
 #>
 #endregion
-
-# Delete not in-use anything in the C:\Windows\Temp folder
-Remove-Item -Path $env:windir\*.evtx -Recurse 
-
-# Delete not in-use anything in the C:\Windows\Temp folder
-Remove-Item -Path $env:windir\*.etl -Recurse 
 
 Add-Type -AssemblyName PresentationFramework
 $Answer = [System.Windows.MessageBox]::Show("Reboot to make changes effective?", "Restart Computer", "YesNo", "Question")
