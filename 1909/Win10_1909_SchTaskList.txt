@@ -16,11 +16,8 @@ ProgramDataUpdater
 Proxy
 QueueReporting
 RecommendedTroubleshootingScanner
-ReconcileFeatures
 ReconcileLanguageResources
-RefreshCache
 RegIdleBackup
-ResPriStaticDbSync
 RunFullMemoryDiagnostic
 ScanForUpdates
 ScanForUpdatesAsUser
@@ -50,5 +47,4 @@ WIM-Hash-Management
 WindowsActionDialog
 WinSAT
 *Folders*
-WsSwapAssessmentTask
 XblGameSaveTask
