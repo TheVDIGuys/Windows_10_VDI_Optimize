@@ -7,6 +7,11 @@
                   "Optimizing Windows 10, Build 1909, for a Virtual Desktop Infrastructure (VDI) role"
                   URL: TBD
 
+- Important:      Every setting in this script and input files are possible recommendations only,
+                  and NOT requirements in any way. Please evaluate every setting for applicability
+                  to your specific environment. These scripts have been tested on plain Hyper-V
+                  VMs. Please test thoroughly in your environment before implementation
+
 - DEPENDENCIES    1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319)
                   2. LGPO database files available on the GitHub site where this script is located
                   3. This PowerShell script
@@ -32,7 +37,7 @@ https://msdn.microsoft.com/en-us/library/cc422938.aspx
 - Disk cleanup                         - Complete
 - Default User Profile Customization   - Complete
 
-This script is dependant on three elements:
+This script is dependent on three elements:
 LGPO Settings folder, applied with the LGPO.exe Microsoft app
 
 The UWP app input file contains the list of almost all the UWP application packages that can be removed with PowerShell interactively.  
