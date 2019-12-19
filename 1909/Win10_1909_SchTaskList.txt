@@ -1,7 +1,3 @@
-# The following are some examples of tasks that could be disabled, depending on environment
-# Please review this list and customize for your environment.
-# Descriptions and paths of these tasks are in the 1909 recommendations document (URL in Readme.md)
-
 Cellular
 Consolidator
 Diagnostics
