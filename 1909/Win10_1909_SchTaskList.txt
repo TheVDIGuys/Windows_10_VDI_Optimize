@@ -1,5 +1,4 @@
 BgTaskRegistrationMaintenanceTask
-Cellular
 Consolidator
 Diagnostics
 FamilySafetyMonitor
