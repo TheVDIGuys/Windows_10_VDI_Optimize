@@ -35,6 +35,6 @@ into the "Master" branch.  The issue is that Windows will not check certificate 
 program installations could fail.  The temporary workaround is to open GPEDIT.MSC on the reference image...
 The set the policy to "not configured".  Here is the location of the policy setting:
 
-Local Computer Policy \ Computer Configuration \ Administrative Templates \ System \ Internet Communication Management\ Internet Communication settings
+"Local Computer Policy \ Computer Configuration \ Administrative Templates \ System \ Internet Communication Management\ Internet Communication settings"
 "Turn off Automatic Root Certificates Update"
 ====================================================================
