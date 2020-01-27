@@ -28,3 +28,16 @@ https://msdn.microsoft.com/en-us/library/cc422938.aspx
 
 This script is dependant on three elements:
 LGPO Settings folder, applied with the LGPO.exe Microsoft app
+
+# IMPORTANT ISSUE (01/17/2020)
+IMPORTANT: There is a setting in the current LGPO files that should not be set by default. As of 1/17/10...
+a fix has been checked in to the "Pending" branch.  Once we confirm that resolves the issue we will merge...
+into the "Master" branch.  The issue is that Windows will not check certificate information, and thus...
+program installations could fail.  The temporary workaround is to open GPEDIT.MSC on the reference image...
+The set the policy to "not configured".  Here is the location of the policy setting:
+
+**Local Computer Policy \ Computer Configuration \ Administrative Templates \ System \ Internet Communication Management \ Internet Communication settings**
+
+```
+Turn off Automatic Root Certificates Update
+```
