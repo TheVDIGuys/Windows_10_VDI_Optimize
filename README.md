@@ -41,3 +41,10 @@ The set the policy to "not configured".  Here is the location of the policy sett
 ```
 Turn off Automatic Root Certificates Update
 ```
+# IMPORTANT ISSUE (01/27/2020)
+A new issue was discovered recently regarding the 'CDPSvc'. If that service is disabled, and
+a new user logs on to the computer then opens 'System Settings' to view display settings,
+'SystemSettings.exe' will crash and log an error to the event log with code "fatal app exit".
+We removed the entry 'CDPSvc' from 'Win10_1909_ServicesDisable.txt' as a result.
+
+As of 1/27/2020, the updated 'Win10_1909_ServicesDisable.txt' has been updated in the 'CDPSvc' branch.  Please test that branch and comment if any issues found.  If not, we will merge branches.
