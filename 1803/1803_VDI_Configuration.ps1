@@ -69,9 +69,10 @@ If (Test-Path .\SchTaskList.txt)
 }
 If ($SchTasksList.count -gt 0)
 {
+    $EnabledScheduledTasks = Get-ScheduledTask | Where-Object {$_.State -ne "Disabled"}
     Foreach ($Item in $SchTasksList)
     {
-        Get-ScheduledTask | Where-Object {$_.TaskName -like "$($Item.trim())"} | Disable-ScheduledTask
+        $EnabledScheduledTasks | Where-Object {$_.TaskName -like "$($Item.trim())"} | Disable-ScheduledTask
     }
 }
 #endregion
