@@ -35,17 +35,17 @@ https://msdn.microsoft.com/en-us/library/cc422938.aspx
 This script is dependant on three elements:
 LGPO Settings folder, applied with the LGPO.exe Microsoft app
 
-The UWP app input file contains the list of almost all the UWP application packages that can be removed with PowerShell interactively.  
-The Store and a few others, such as Wallet, were left off intentionally.  Though it is possible to remove the Store app, 
+The UWP app input file contains the list of almost all the UWP application packages that can be removed with PowerShell interactively.
+The Store and a few others, such as Wallet, were left off intentionally.  Though it is possible to remove the Store app,
 it is nearly impossible to get it back.  Please review the lists below and comment out or remove references to packages that you do not want to remove.
 #>
 
 Set-Location $PSScriptRoot
 #region Disable, then remove, Windows Media Player including payload
-    
+
 Try
 {
-    Disable-WindowsOptionalFeature -Online -FeatureName WindowsMediaPlayer 
+    Disable-WindowsOptionalFeature -Online -FeatureName WindowsMediaPlayer
     Get-WindowsPackage -Online -PackageName "*Windows-mediaplayer*" | ForEach-Object { Remove-WindowsPackage -PackageName $_.PackageName -Online -ErrorAction SilentlyContinue }
 }
 Catch { }
@@ -122,12 +122,12 @@ If ($DefaultUserSettings.count -gt 0)
 {
     Foreach ($Item in $DefaultUserSettings)
     {
-        Start-Process C:\Windows\System32\Reg.exe -ArgumentList "$Item" -Wait 
+        Start-Process C:\Windows\System32\Reg.exe -ArgumentList "$Item" -Wait
     }
 }
 
 # Restart the previously closed Explorer.exe process
-Start-Process -FilePath C:\Windows\Explorer.exe -Wait 
+Start-Process -FilePath C:\Windows\Explorer.exe -Wait
 #endregion
 
 #region Disable Windows Traces
@@ -153,7 +153,7 @@ If ($DisableAutologgers.count -gt 0)
 #   * change the "Enable Windows NTP Client" setting.
 #   * set the "Select when Quality Updates are received" policy
 
-if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe")) 
+if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe"))
 {
     Start-Process (Join-Path $PSScriptRoot "LGPO\LGPO.exe") -ArgumentList "/g $((Join-Path $PSScriptRoot "LGPO\."))" -Wait
 }
@@ -162,7 +162,7 @@ if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe"))
 #region Disable Services
 #################### BEGIN: DISABLE SERVICES section ###########################
 If (Test-Path .\Win10_1909_ServicesDisable.txt)
- 
+
 {
     $ServicesToDisable = Get-Content .\Win10_1909_ServicesDisable.txt
 }
@@ -173,7 +173,7 @@ If ($ServicesToDisable.count -gt 0)
     {
         Write-Host "Processing $Item"
         Stop-Service $Item -Force -ErrorAction SilentlyContinue
-        Set-Service $Item -StartupType Disabled 
+        Set-Service $Item -StartupType Disabled
         #New-ItemProperty -Path "$Item" -Name "Start" -PropertyType "DWORD" -Value "4" -Force
     }
 }
