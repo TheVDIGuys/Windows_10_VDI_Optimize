@@ -79,10 +79,11 @@ If (Test-Path .\Win10_1903_SchTaskList.txt)
 }
 If ($SchTasksList.count -gt 0)
 {
+    $EnabledScheduledTasks = Get-ScheduledTask | Where-Object {$_.State -ne "Disabled"}
     Foreach ($Item in $SchTasksList)
     {
         $Task = (($Item -split ":")[0]).Trim()
-        Get-ScheduledTask | Where-Object { $_.TaskName -like "*$Task*" } | Disable-ScheduledTask
+        $EnabledScheduledTasks | Where-Object { $_.TaskName -like "*$Task*" } | Disable-ScheduledTask
     }
 }
 #endregion
