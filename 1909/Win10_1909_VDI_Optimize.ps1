@@ -3,7 +3,7 @@
 - TITLE:          Microsoft Windows 1909  VDI/WVD Optimization Script
 - AUTHORED BY:    Robert M. Smith and Tim Muessig (Microsoft Premier Services)
 - AUTHORED DATE:  11/19/2019
-- LAST UPDATED:   03/11/2020
+- LAST UPDATED:   04/10/2020
 - PURPOSE:        To automatically apply setting referenced in white paper:
                   "Optimizing Windows 10, Build 1909, for a Virtual Desktop Infrastructure (VDI) role"
                   URL: TBD
@@ -32,7 +32,6 @@ https://msdn.microsoft.com/en-us/library/cc422938.aspx
 - Appx package cleanup                 - Complete
 - Scheduled tasks                      - Complete
 - Automatic Windows traces             - Complete
-- OneDrive cleanup                     - Complete
 - Local group policy                   - Complete
 - System services                      - Complete
 - Disk cleanup                         - Complete
