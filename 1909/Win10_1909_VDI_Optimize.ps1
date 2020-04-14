@@ -1,11 +1,17 @@
 #Requires -RunAsAdministrator
 <#
-- TITLE:          Microsoft Windows 1909  VDI Cleanup Script
+- TITLE:          Microsoft Windows 1909  VDI/WVD Optimization Script
 - AUTHORED BY:    Robert M. Smith and Tim Muessig (Microsoft Premier Services)
 - AUTHORED DATE:  11/19/2019
+- LAST UPDATED:   04/10/2020
 - PURPOSE:        To automatically apply setting referenced in white paper:
                   "Optimizing Windows 10, Build 1909, for a Virtual Desktop Infrastructure (VDI) role"
                   URL: TBD
+
+- Important:      Every setting in this script and input files are possible recommendations only,
+                  and NOT requirements in any way. Please evaluate every setting for applicability
+                  to your specific environment. These scripts have been tested on plain Hyper-V
+                  VMs. Please test thoroughly in your environment before implementation
 
 - DEPENDENCIES    1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319)
                   2. LGPO database files available on the GitHub site where this script is located
@@ -26,26 +32,25 @@ https://msdn.microsoft.com/en-us/library/cc422938.aspx
 - Appx package cleanup                 - Complete
 - Scheduled tasks                      - Complete
 - Automatic Windows traces             - Complete
-- OneDrive cleanup                     - Complete
 - Local group policy                   - Complete
 - System services                      - Complete
 - Disk cleanup                         - Complete
 - Default User Profile Customization   - Complete
 
-This script is dependant on three elements:
+This script is dependent on three elements:
 LGPO Settings folder, applied with the LGPO.exe Microsoft app
 
-The UWP app input file contains the list of almost all the UWP application packages that can be removed with PowerShell interactively.
-The Store and a few others, such as Wallet, were left off intentionally.  Though it is possible to remove the Store app,
+The UWP app input file contains the list of almost all the UWP application packages that can be removed with PowerShell interactively.  
+The Store and a few others, such as Wallet, were left off intentionally.  Though it is possible to remove the Store app, 
 it is nearly impossible to get it back.  Please review the lists below and comment out or remove references to packages that you do not want to remove.
 #>
 
 Set-Location $PSScriptRoot
 #region Disable, then remove, Windows Media Player including payload
-
+    
 Try
 {
-    Disable-WindowsOptionalFeature -Online -FeatureName WindowsMediaPlayer
+    Disable-WindowsOptionalFeature -Online -FeatureName WindowsMediaPlayer 
     Get-WindowsPackage -Online -PackageName "*Windows-mediaplayer*" | ForEach-Object { Remove-WindowsPackage -PackageName $_.PackageName -Online -ErrorAction SilentlyContinue }
 }
 Catch { }
@@ -92,28 +97,7 @@ If ($SchTasksList.count -gt 0)
 #endregion
 
 #region Customize Default User Profile
-
-# End the OneDrive.exe and Explorer.exe processes, then uninstall OneDrive.exe
-# Then remove leftover OneDrive .lnk files
-
-Get-Process OneDrive | Stop-Process -Force
-Get-Process explorer | Stop-Process -Force
-
-if (Test-Path "C:\Windows\System32\OneDriveSetup.exe")
-{
-    Start-Process "C:\Windows\System32\OneDriveSetup.exe" -ArgumentList "/uninstall" -Wait
-}
-
-if (Test-Path "C:\Windows\SysWOW64\OneDriveSetup.exe")
-{
-    Start-Process "C:\Windows\SysWOW64\OneDriveSetup.exe" -ArgumentList "/uninstall" -Wait
-}
-
-Remove-Item -Path "C:\Windows\ServiceProfiles\LocalService\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk" -Force
-Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk" -Force
-
-# Remove the automatic start item for OneDrive from the default user profile registry hive
-# and while NTUSER.DAT is open, apply appearance customizations, then close hive file
+# Apply appearance customizations to default user registry hive, then close hive file
 
 If (Test-Path .\Win10_1909_DefaultUserSettings.txt)
 {
@@ -123,12 +107,9 @@ If ($DefaultUserSettings.count -gt 0)
 {
     Foreach ($Item in $DefaultUserSettings)
     {
-        Start-Process C:\Windows\System32\Reg.exe -ArgumentList "$Item" -Wait
+        Start-Process C:\Windows\System32\Reg.exe -ArgumentList "$Item" -Wait 
     }
 }
-
-# Restart the previously closed Explorer.exe process
-Start-Process -FilePath C:\Windows\Explorer.exe -Wait
 #endregion
 
 #region Disable Windows Traces
@@ -154,7 +135,7 @@ If ($DisableAutologgers.count -gt 0)
 #   * change the "Enable Windows NTP Client" setting.
 #   * set the "Select when Quality Updates are received" policy
 
-if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe"))
+if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe")) 
 {
     Start-Process (Join-Path $PSScriptRoot "LGPO\LGPO.exe") -ArgumentList "/g $((Join-Path $PSScriptRoot "LGPO\."))" -Wait
 }
@@ -163,7 +144,7 @@ if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe"))
 #region Disable Services
 #################### BEGIN: DISABLE SERVICES section ###########################
 If (Test-Path .\Win10_1909_ServicesDisable.txt)
-
+ 
 {
     $ServicesToDisable = Get-Content .\Win10_1909_ServicesDisable.txt
 }
@@ -174,7 +155,7 @@ If ($ServicesToDisable.count -gt 0)
     {
         Write-Host "Processing $Item"
         Stop-Service $Item -Force -ErrorAction SilentlyContinue
-        Set-Service $Item -StartupType Disabled
+        Set-Service $Item -StartupType Disabled 
         #New-ItemProperty -Path "$Item" -Name "Start" -PropertyType "DWORD" -Value "4" -Force
     }
 }
