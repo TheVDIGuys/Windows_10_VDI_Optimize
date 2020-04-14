@@ -34,8 +34,8 @@ LGPO Settings folder, applied with the LGPO.exe Microsoft app
 
 
 
-the following is the list of almost all the UWP application packages that can be removed with PowerShell, interactively.  
-The Store and a few others, such as Wallet, were left off intentionally.  Though it is possible to remove the Store app, 
+the following is the list of almost all the UWP application packages that can be removed with PowerShell, interactively.
+The Store and a few others, such as Wallet, were left off intentionally.  Though it is possible to remove the Store app,
 it is nearly impossible to get it back.  Please review the lists below and comment out or remove references to packages that you do not want to remove.
 #>
 
@@ -69,9 +69,10 @@ If (Test-Path .\SchTaskList.txt)
 }
 If ($SchTasksList.count -gt 0)
 {
+    $EnabledScheduledTasks = Get-ScheduledTask | Where-Object {$_.State -ne "Disabled"}
     Foreach ($Item in $SchTasksList)
     {
-        Get-ScheduledTask | Where-Object {$_.TaskName -like "$($Item.trim())"} | Disable-ScheduledTask
+        $EnabledScheduledTasks | Where-Object {$_.TaskName -like "$($Item.trim())"} | Disable-ScheduledTask
     }
 }
 #endregion
@@ -108,12 +109,12 @@ If ($DefaultUserSettings.count -gt 0)
 {
     Foreach ($Item in $DefaultUserSettings)
     {
-        Start-Process C:\Windows\System32\Reg.exe -ArgumentList "$Item" -Wait 
+        Start-Process C:\Windows\System32\Reg.exe -ArgumentList "$Item" -Wait
     }
 }
 
 # Restart the previously closed Explorer.exe process
-Start-Process -FilePath C:\Windows\Explorer.exe -Wait 
+Start-Process -FilePath C:\Windows\Explorer.exe -Wait
 #endregion
 
 #region Disable Windows Traces
@@ -139,7 +140,7 @@ If ($DisableAutologgers.count -gt 0)
 #   * change the "Enable Windows NTP Client" setting.
 #   * set the "Select when Quality Updates are received" policy
 
-if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe")) 
+if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe"))
 {
     Start-Process (Join-Path $PSScriptRoot "LGPO\LGPO.exe") -ArgumentList "/g $((Join-Path $PSScriptRoot "LGPO\VDI_OptimalSettings"))" -Wait
 }
@@ -148,7 +149,7 @@ if (Test-Path (Join-Path $PSScriptRoot "LGPO\LGPO.exe"))
 #region Disable Services
 #################### BEGIN: DISABLE SERVICES section ###########################
 If (Test-Path .\ServicesDisable.txt)
- 
+
 {
     $ServicesToDisable = Get-Content .\ServicesDisable.txt
 }
@@ -175,7 +176,7 @@ $FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
 Remove-Item -Path $env:TEMP\*.* -Recurse
 
 # Delete not in-use anything in the C:\Windows\Temp folder
-Remove-Item -Path $env:windir\Temp\*.* -Recurse 
+Remove-Item -Path $env:windir\Temp\*.* -Recurse
 
 # Disk Cleanup Wizard automation (Cleanmgr.exe /SAGESET:11)
 # If you prefer to skip a particular disk cleanup category, edit the "DiskCleanRegSettings.txt"
