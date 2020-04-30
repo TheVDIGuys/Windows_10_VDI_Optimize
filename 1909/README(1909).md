@@ -69,3 +69,23 @@ on the taskbar from Connected to "status unknown".  This setting was changed bac
 ```
 Turn off Windows Network Connectivity Status Indicator active tests
 ```
+# MINOR ISSUE (04/29/2020)
+Background app resource usage issue.  If you choose to keep several of the UWP apps, such as Photos, Skype, and Phone, you may notice that these apps will start up and run in the background, even though a user has not started the app.  This behavior can be controlled through the 'Settings' app, under 'Background apps'.  If you toggle these apps' setting to "off", now the app will not automatically start and run in the background when users logon.  The background resource usage is low, but can add up in multi-session environments.
+
+The issue is that there is not currently a policy that provides a global toggle for these apps.  There are a few ways this can be addressed in the short-term.
+
+1. Set a Group Policy Preference to automatically set the following registry values
+
+`"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.Windows.Photos_8wekyb3d8bbwe /v Disabled /t REG_DWORD /d 1`
+`"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.Windows.Photos_8wekyb3d8bbwe /v DisabledByUser /t REG_DWORD /d 1`
+`"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.SkypeApp_kzf8qxf38zg5c /v Disabled /t REG_DWORD /d 1`
+`"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.SkypeApp_kzf8qxf38zg5c /v DisabledByUser /t REG_DWORD /d 1`
+`"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.YourPhone_8wekyb3d8bbwe /v Disabled /t REG_DWORD /d 1`
+`"HKCU\Temp\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.YourPhone_8wekyb3d8bbwe /v DisabledByUser /t REG_DWORD /d 1`
+
+2. Uninstall the apps for "AllUsers", and optionally delete the payload.  The text input file "Win10_1909_AppxPackages.txt" uninstalls these apps by default.
+
+3. Edit the default user registry hive, which these scripts do.  The REG.EXE commands have been recently added to the file "Win10_1909_DefaultUserSettings.txt" in this repository.  That way if you want to keep one or all of these apps, and still control the behavior, you can do so with the scripting method.
+
+Please note that the registry settings listed here are subject to change.
+
