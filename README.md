@@ -47,4 +47,32 @@ a new user logs on to the computer then opens 'System Settings' to view display 
 'SystemSettings.exe' will crash and log an error to the event log with code "fatal app exit".
 We removed the entry 'CDPSvc' from 'Win10_1909_ServicesDisable.txt' as a result.
 
-As of 1/27/2020, the updated 'Win10_1909_ServicesDisable.txt' has been updated in the 'CDPSvc' branch.  Please test that branch and comment if any issues found.  If not, we will merge branches.
+# Low-impact ISSUE (04/20/2020)
+Previously these scripts had a local policy setting at this location set to disabled:
+
+**Local Computer Policy \ Computer Configuration \ Administrative Templates \ System \ Internet Communication Management \ Internet Communication settings**
+```
+Turn off Windows Network Connectivity Status Indicator active tests
+```
+With the active tests disabled, Office 365 is not able to contact it's licensing service, and therefore would not run any of the Office apps.  This setting has been changed back to "Not configured" in the included LGPO file.
+
+# Low-impact ISSUE (04/22/2020)
+
+In some virtual environments, such as Azure Windows Virtual Desktop, some of the application windows will have no border.  An example is Windows File Explorer.  You can replicate this by opening Wordpad and File Explorer, then move then around and note that you may not see a border where one app starts and the other ends.
+One of the optimizations in the latest drop changes the Visual Effects settings (found in System Properties) to reduce animations and effects, while still maintaining a good user experience such as "smoothing screen fonts".
+The other two optimizations: "show shadows under mouse pointer" and "Show shadows under windows" will enable a shadow effect around the windows like File Explorer, so that the border of the app is now visible.
+These settings are written to the default user profile registry hive, so would apply only to users whose profile is created after these optimizations run, and on this computer.
+
+# Low-impact ISSUE (04/29/2020)
+Several of the built-in UWP apps, such as Skype, Phone, and Photos, will start processes and run in the background, even though the user has not started the app(s).  On a single machine this is near-zero impact, but on multi-session Windows, it can be a slightly larger impact issue.  There is a setting in the 'Settings' app, under 'Background apps' that allows you to control this behavior on a per-user basis.  However, there is currently no way to change this behavior as a global setting, other than to completely uninstall the app.
+
+If you would like to keep one or more of these apps in your image, and still control the background behavior, you can edit the default user registry hive and set the following settings:
+
+"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.Windows.Photos_8wekyb3d8bbwe /v Disabled /t REG_DWORD /d 1 /f
+"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.Windows.Photos_8wekyb3d8bbwe /v DisabledByUser /t REG_DWORD /d 1 /f
+"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.SkypeApp_kzf8qxf38zg5c /v Disabled /t REG_DWORD /d 1 /f
+"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.SkypeApp_kzf8qxf38zg5c /v DisabledByUser /t REG_DWORD /d 1 /f
+"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.YourPhone_8wekyb3d8bbwe /v Disabled /t REG_DWORD /d 1 /f
+"HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.YourPhone_8wekyb3d8bbwe /v DisabledByUser /t REG_DWORD /d 1 /f
+
+You could also set these settings with Group Policy Preferences, and should take effect after a log off and log back on.
