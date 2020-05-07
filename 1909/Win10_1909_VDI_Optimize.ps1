@@ -204,14 +204,14 @@ Set-NetAdapterAdvancedProperty command.
 # Delete not in-use files in locations C:\Windows\Temp and %temp%
 # Also sweep and delete *.tmp, *.etl, *.evtx (not in use==not needed)
 
-$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl, *.evtx -Recurse -Force -ErrorAction Continue
-$FilesToRemove | Remove-Item -ErrorAction Continue
+$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl, *.evtx -Recurse -Force -ErrorAction SilentlyContinue
+$FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
 
 # Delete not in-use anything in the C:\Windows\Temp folder
-Remove-Item -Path $env:windir\Temp\* -Recurse -Force -ErrorAction Continue
+Remove-Item -Path $env:windir\Temp\* -Recurse -Force -ErrorAction SilentlyContinue
 
 # Delete not in-use anything in your %temp% folder
-Remove-Item -Path $env:TEMP\* -Recurse -Force -ErrorAction Continue
+Remove-Item -Path $env:TEMP\* -Recurse -Force -ErrorAction SilentlyContinue
 #endregion
 
 Add-Type -AssemblyName PresentationFramework
