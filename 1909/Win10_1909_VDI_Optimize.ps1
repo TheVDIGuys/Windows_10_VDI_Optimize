@@ -113,7 +113,7 @@ If ($DefaultUserSettings.count -gt 0)
 #endregion
 
 #region Disable Windows Traces
-If (Test-Path .\Win10_1093_ServicesAutologgersDisable.txt)
+If (Test-Path .\Win10_1909_ServicesAutologgersDisable.txt)
 {
     $DisableAutologgers = Get-Content .\Win10_1093_ServicesAutologgersDisable.txt
 }
