@@ -63,7 +63,8 @@ One of the optimizations in the latest drop changes the Visual Effects settings 
 The other two optimizations: "show shadows under mouse pointer" and "Show shadows under windows" will enable a shadow effect around the windows like File Explorer, so that the border of the app is now visible.
 These settings are written to the default user profile registry hive, so would apply only to users whose profile is created after these optimizations run, and on this computer.
 
-# Low-impact ISSUE (04/29/2020)
+# 1909 Low-impact ISSUE (04/29/2020)
+**Apps running in the background**
 Several of the built-in UWP apps, such as Skype, Phone, and Photos, will start processes and run in the background, even though the user has not started the app(s).  On a single machine this is near-zero impact, but on multi-session Windows, it can be a slightly larger impact issue.  There is a setting in the 'Settings' app, under 'Background apps' that allows you to control this behavior on a per-user basis.  However, there is currently no way to change this behavior as a global setting, other than to completely uninstall the app.
 
 If you would like to keep one or more of these apps in your image, and still control the background behavior, you can edit the default user registry hive and set the following settings:
@@ -76,3 +77,10 @@ If you would like to keep one or more of these apps in your image, and still con
 "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.YourPhone_8wekyb3d8bbwe /v DisabledByUser /t REG_DWORD /d 1 /f
 
 You could also set these settings with Group Policy Preferences, and should take effect after a log off and log back on.
+
+# 1909 Medium-impact ISSUE (05/11/2020)
+**WINDOWS UPDATE NOT WORKING**
+With the settings included in the LGPO backup, which is restored to the target during the processing of these scripts, if you attempt to run Windows Update manually, you may not be able to connect.  This is because Feature Updates are disabled via local policy in these scripts.  If you set all Windows Update policies back to "not configured", then run "GPUPDATE /force", now your machine will connect to Windows Update.
+The reason these settings are in place in these scripts, is in case you deploy these to a target that is Internet connected, your VM may try to "Feature Update" to the current Windows 10 build, which is termed "2004" (as of May 11, 2020).  The settings in place currently, prevent Feature Updates, but also seem to inhibit just downloading monthly updates to the current build.
+To address this for implementations that prefer to allow Windows Update, a new "fork" of these optimization scripts has been created under the main code folder.  The new folder is called "1909_WindowsUpdateEndabled".  Within this folder, the local policy settings (LGPO) have all Windows Update settings "not configured".
+If you need to have Windows Update enabled out of the gate, try the scripts under this folder and raise an issue if any problems are found.
