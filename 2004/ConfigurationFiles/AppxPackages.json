@@ -1,0 +1,152 @@
+[
+  {
+    "AppxPackage": "Microsoft.BingWeather",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.BingWeather"
+  },
+  {
+    "AppxPackage": "Microsoft.GetHelp",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.GetHelp"
+  },
+  {
+    "AppxPackage": "Microsoft.Getstarted",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.Getstarted"
+  },
+  {
+    "AppxPackage": "Microsoft.Messaging",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.Messaging"
+  },
+  {
+    "AppxPackage": "Microsoft.MicrosoftOfficeHub",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.MicrosoftOfficeHub"
+  },
+  {
+    "AppxPackage": "Microsoft.MicrosoftSolitaireCollection",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.MicrosoftSolitaireCollection"
+  },
+  {
+    "AppxPackage": "Microsoft.MicrosoftStickyNotes",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.MicrosoftStickyNotes"
+  },
+  {
+    "AppxPackage": "Microsoft.MSPaint",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.MSPaint"
+  },
+  {
+    "AppxPackage": "Microsoft.Office.OneNote",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.Office.OneNote"
+  },
+  {
+    "AppxPackage": "Microsoft.OneConnect",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.OneConnect"
+  },
+  {
+    "AppxPackage": "Microsoft.People",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.People"
+  },
+  {
+    "AppxPackage": "Microsoft.Print3D",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.Print3D"
+  },
+  {
+    "AppxPackage": "Microsoft.SkypeApp",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.SkypeApp"
+  },
+  {
+    "AppxPackage": "Microsoft.Wallet",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.Wallet"
+  },
+  {
+    "AppxPackage": "Microsoft.Windows.Photos",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.Windows.Photos"
+  },
+  {
+    "AppxPackage": "Microsoft.WindowsAlarms",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.WindowsAlarms"
+  },
+  {
+    "AppxPackage": "Microsoft.WindowsCalculator",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.WindowsCalculator"
+  },
+  {
+    "AppxPackage": "Microsoft.WindowsCamera",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.WindowsCamera"
+  },
+  {
+    "AppxPackage": "microsoft.windowscommunicationsapps",
+    "VDIState": "Disabled",
+    "Description": "microsoft.windowscommunicationsapps"
+  },
+  {
+    "AppxPackage": "Microsoft.WindowsFeedbackHub",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.WindowsFeedbackHub"
+  },
+  {
+    "AppxPackage": "Microsoft.WindowsMaps",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.WindowsMaps"
+  },
+  {
+    "AppxPackage": "Microsoft.Xbox.TCUI",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.Xbox.TCUI"
+  },
+  {
+    "AppxPackage": "Microsoft.XboxApp",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.XboxApp"
+  },
+  {
+    "AppxPackage": "Microsoft.XboxGameOverlay",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.XboxGameOverlay"
+  },
+  {
+    "AppxPackage": "Microsoft.XboxGamingOverlay",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.XboxGamingOverlay"
+  },
+  {
+    "AppxPackage": "Microsoft.XboxIdentityProvider",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.XboxIdentityProvider"
+  },
+  {
+    "AppxPackage": "Microsoft.XboxSpeechToTextOverlay",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.XboxSpeechToTextOverlay"
+  },
+  {
+    "AppxPackage": "Microsoft.YourPhone",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.YourPhone"
+  },
+  {
+    "AppxPackage": "Microsoft.ZuneMusic",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.ZuneMusic"
+  },
+  {
+    "AppxPackage": "Microsoft.ZuneVideo",
+    "VDIState": "Disabled",
+    "Description": "Microsoft.ZuneVideo"
+  }
+]

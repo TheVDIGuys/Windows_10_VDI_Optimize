@@ -1,0 +1,162 @@
+[
+  {
+    "Name": "autotimesvc",
+    "VDIState": "Disabled",
+    "Description": "Cellular Time"
+  },
+  {
+    "Name": "BcastDVRUserService",
+    "VDIState": "Disabled",
+    "Description": "GameDVR and Broadcast User Service"
+  },
+  {
+    "Name": "CDPSvc",
+    "VDIState": "Disabled",
+    "Description": "Connected Devices Platform Service"
+  },
+  {
+    "Name": "CDPUserSvc",
+    "VDIState": "Disabled",
+    "Description": "Connected Devices Platform User Service"
+  },
+  {
+    "Name": "CscService",
+    "VDIState": "Disabled",
+    "Description": "Offline Files"
+  },
+  {
+    "Name": "defragsvc",
+    "VDIState": "Disabled",
+    "Description": "Optimize drives"
+  },
+  {
+    "Name": "DiagSvc",
+    "VDIState": "Disabled",
+    "Description": "Diagnostic Execution Service"
+  },
+  {
+    "Name": "DiagTrack",
+    "VDIState": "Disabled",
+    "Description": "Connected User Experiences and Telemetry"
+  },
+  {
+    "Name": "DPS",
+    "VDIState": "Disabled",
+    "Description": "Diagnostic Policy Service"
+  },
+  {
+    "Name": "DsmSvc",
+    "VDIState": "Disabled",
+    "Description": "Device Setup Manager"
+  },
+  {
+    "Name": "DusmSvc",
+    "VDIState": "Disabled",
+    "Description": "Data Usage"
+  },
+  {
+    "Name": "icssvc",
+    "VDIState": "Disabled",
+    "Description": "Windows Mobile Hotspot Service"
+  },
+  {
+    "Name": "InstallService",
+    "VDIState": "Disabled",
+    "Description": "Microsoft Store Install Service"
+  },
+  {
+    "Name": "lfsvc",
+    "VDIState": "Disabled",
+    "Description": "Geolocation Service"
+  },
+  {
+    "Name": "MapsBroker",
+    "VDIState": "Disabled",
+    "Description": "Downloaded Maps Manager"
+  },
+  {
+    "Name": "MessagingService",
+    "VDIState": "Disabled",
+    "Description": "MessagingService"
+  },
+  {
+    "Name": "OneSyncSvc",
+    "VDIState": "Disabled",
+    "Description": "Sync Host"
+  },
+  {
+    "Name": "PimIndexMaintenanceSvc",
+    "VDIState": "Disabled",
+    "Description": "Contact Data"
+  },
+  {
+    "Name": "Power",
+    "VDIState": "Disabled",
+    "Description": "Power"
+  },
+  {
+    "Name": "SEMgrSvc",
+    "VDIState": "Disabled",
+    "Description": "Payments and NFC/SE Manager"
+  },
+  {
+    "Name": "SmsRouter",
+    "VDIState": "Disabled",
+    "Description": "Microsoft Windows SMS Router Service."
+  },
+  {
+    "Name": "SysMain",
+    "VDIState": "Disabled",
+    "Description": "SysMain"
+  },
+  {
+    "Name": "TabletInputService",
+    "VDIState": "Disabled",
+    "Description": "Touch Keyboard and Handwriting Panel Service"
+  },
+  {
+    "Name": "UsoSvc",
+    "VDIState": "Disabled",
+    "Description": "Update Orchestrator Service"
+  },
+  {
+    "Name": "VSS",
+    "VDIState": "Disabled",
+    "Description": "Volume Shadow Copy"
+  },
+  {
+    "Name": "WdiSystemHost",
+    "VDIState": "Disabled",
+    "Description": "Diagnostic System Host"
+  },
+  {
+    "Name": "WerSvc",
+    "VDIState": "Disabled",
+    "Description": "Windows Error Reporting Service"
+  },
+  {
+    "Name": "WSearch",
+    "VDIState": "Disabled",
+    "Description": "Windows Search"
+  },
+  {
+    "Name": "XblAuthManager",
+    "VDIState": "Disabled",
+    "Description": "Xbox Live Auth Manager"
+  },
+  {
+    "Name": "XblGameSave",
+    "VDIState": "Disabled",
+    "Description": "Xbox Live Game Save"
+  },
+  {
+    "Name": "XboxGipSvc",
+    "VDIState": "Disabled",
+    "Description": "Xbox Accessory Management Service"
+  },
+  {
+    "Name": "XboxNetApiSvc",
+    "VDIState": "Disabled",
+    "Description": "Xbox Live Networking Service"
+  }
+]
