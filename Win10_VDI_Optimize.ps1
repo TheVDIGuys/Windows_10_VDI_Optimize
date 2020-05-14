@@ -10,11 +10,11 @@ Param
 #Requires -RunAsAdministrator
 <#
 - TITLE:          Microsoft Windows 10 VDI/WVD Optimization Script
-- AUTHORED BY:    Robert M. Smith and Tim Muessig (Microsoft Premier Services)
+- AUTHORED BY:    Robert M. Smith and Tim Muessig (Microsoft)
 - AUTHORED DATE:  11/19/2019
 - LAST UPDATED:   5/8/2020
 - PURPOSE:        To automatically apply setting referenced in white paper:
-                  "Optimizing Windows 10, Build 2004, for a Virtual Desktop Infrastructure (VDI) role"    #[ToDo: How do we want to handle this with regard to the build numbers]
+                  "Optimizing Windows 10, for Virtual Desktop Infrastructure (VDI) and Windows Virtual Desktop (WVD)" 
                   URL: TBD
 
 - Important:      Every setting in this script and input files are possible recommendations only,
