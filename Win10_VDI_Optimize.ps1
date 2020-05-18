@@ -198,27 +198,6 @@ If ($ServicesToDisable.count -gt 0)
 }
 #endregion
 
-#region Disk Cleanup
-
-# Disk Cleanup Wizard automation (Cleanmgr.exe /SAGESET:11)
-# If you prefer to skip a particular disk cleanup category, edit the "DiskCleanRegSettings.txt"
-If (Test-Path .\ConfigurationFiles\DiskCleanRegSettings.txt)
-{
-    $DiskCleanupSettings = Get-Content .\ConfigurationFiles\DiskCleanRegSettings.txt
-}
-If ($DiskCleanupSettings.count -gt 0)
-{
-    Foreach ($Item in $DiskCleanupSettings)
-    {
-        Write-Verbose "Adding Key $Item"
-        New-ItemProperty -Path "$Item" -Name "StateFlags0011" -PropertyType "DWORD" -Value "2" -Force | Out-Null
-    }
-}
-Write-Verbose "Running Cleanmgr.exe to remove files"
-Write-Warning "Please be patient, this can take a little while to complete!"
-Start-Process C:\Windows\System32\Cleanmgr.exe -ArgumentList "SAGERUN:11" -Wait
-#endregion
-
 #region Network Optimization
 # LanManWorkstation optimizations
 Write-Verbose "Configuring LanManWorlstation Optimizations"
@@ -229,7 +208,7 @@ New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Services\LanmanWorkstatio
 New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\" -Name "DormantFileLimit" -PropertyType "DWORD" -Value "256" -Force | Out-Null
 
 # NIC Advanced Properties performance settings for network biased environments
-Write-Verbose "Condfiguring Network Adapter Buffer Size"
+Write-Verbose "Configuring Network Adapter Buffer Size"
 Set-NetAdapterAdvancedProperty -DisplayName "Send Buffer Size" -DisplayValue 4MB
 
 <# Note that the above setting is for a Microsoft Hyper-V VM.  You can adjust these values in your environment...
@@ -241,19 +220,43 @@ Set-NetAdapterAdvancedProperty command.
 #region
 # ADDITIONAL DISK CLEANUP
 # Delete not in-use files in locations C:\Windows\Temp and %temp%
-# Also sweep and delete *.tmp, *.etl, *.evtx (not in use==not needed)
+# Also sweep and delete *.tmp, *.etl, *.evtx, *.log, *.dmp, thumbcache*.db (not in use==not needed)
+# 5/18/20: Removing Disk Cleanup and moving some of those tasks to the following manual cleanup
 
-Write-Verbose "Removing .tmp, .etl and .evts files not in use"
-$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.etl, *.evtx -Recurse -Force -ErrorAction SilentlyContinue
+Write-Verbose "Removing .tmp, .etl, .evtx, thumbcache*.db, *.log files not in use"
+$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.dmp, *.etl, *.evtx, thumbcache*.db, *.log -Recurse -Force -ErrorAction SilentlyContinue
+$FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
+
+# Delete Direct3D cache for current user
+$FilesToRemove = Get-ChildItem -Path $env:USERPROFILE\AppData\Local\D3DSCache -Recurse -Force -ErrorAction SilentlyContinue
+$FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
+
+# Delete "RetailDemo" content (if it exits)
+$FilesToRemove = Get-ChildItem -Path $env:ProgramData\Microsoft\Windows\RetailDemo\* -Recurse -Force -ErrorAction SilentlyContinue
 $FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
 
 # Delete not in-use anything in the C:\Windows\Temp folder
 Write-Verbose "Removing all files not in use in $env:windir\TEMP"
 Remove-Item -Path $env:windir\Temp\* -Recurse -Force -ErrorAction SilentlyContinue
 
+# Clear out Windows Error Reporting (WER) report archive folders
+Write-Verbose "Cleaning up WER report archive"
+Remove-Item -Path $env:ProgramData\Microsoft\Windows\WER\Temp\* -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path $env:ProgramData\Microsoft\Windows\WER\ReportArchive\* -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path $env:ProgramData\Microsoft\Windows\WER\ReportQueue\* -Recurse -Force -ErrorAction SilentlyContinue
+
 # Delete not in-use anything in your %temp% folder
 Write-Verbose "Removing files not in use in $env:TEMP directory"
 Remove-Item -Path $env:TEMP\* -Recurse -Force -ErrorAction SilentlyContinue
+
+# Clear out ALL visible Recycle Bins
+Write-Verbose "Clearing out ALL Recycle Bins"
+Clear-RecycleBin -Force -ErrorAction SilentlyContinue
+
+# Clear out BranchCache cache
+Write-Verbose "Clearing BranchCache cache"
+Clear-BCCache -Force -ErrorAction SilentlyContinue
+
 #endregion
 
 Set-Location $CurrentLocation
