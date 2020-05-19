@@ -224,16 +224,15 @@ Set-NetAdapterAdvancedProperty command.
 # 5/18/20: Removing Disk Cleanup and moving some of those tasks to the following manual cleanup
 
 Write-Verbose "Removing .tmp, .etl, .evtx, thumbcache*.db, *.log files not in use"
-$FilesToRemove = Get-ChildItem -Path c:\ -Include *.tmp, *.dmp, *.etl, *.evtx, thumbcache*.db, *.log -Recurse -Force -ErrorAction SilentlyContinue
-$FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
+Get-ChildItem -Path c:\ -Include *.tmp, *.dmp, *.etl, *.evtx, thumbcache*.db, *.log -File -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue
 
 # Delete Direct3D cache for current user
-$FilesToRemove = Get-ChildItem -Path $env:USERPROFILE\AppData\Local\D3DSCache -Recurse -Force -ErrorAction SilentlyContinue
-$FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
+Write-Verbose "Removing Direct3D Cache"
+Get-ChildItem -Path $env:USERPROFILE\AppData\Local\D3DSCache -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue
 
 # Delete "RetailDemo" content (if it exits)
-$FilesToRemove = Get-ChildItem -Path $env:ProgramData\Microsoft\Windows\RetailDemo\* -Recurse -Force -ErrorAction SilentlyContinue
-$FilesToRemove | Remove-Item -ErrorAction SilentlyContinue
+Write-Verbose "Removing Retail Demo content (if it exists)"
+Get-ChildItem -Path $env:ProgramData\Microsoft\Windows\RetailDemo\* -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Recurse -ErrorAction SilentlyContinue
 
 # Delete not in-use anything in the C:\Windows\Temp folder
 Write-Verbose "Removing all files not in use in $env:windir\TEMP"
