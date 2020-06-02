@@ -1,5 +1,11 @@
 [
   {
+    "AppxPackage": "Microsoft.MSPaint",
+    "VDIState": "Disabled",
+    "URL": "https://www.microsoft.com/en-us/p/paint-3d/9nblggh5fv99",
+    "Description": "Paint 3D"
+  },
+  {
     "AppxPackage": "Microsoft.BingWeather",
     "VDIState": "Disabled",
     "URL": "https://www.microsoft.com/en-us/p/msn-weather/9wzdncrfj3q2",
