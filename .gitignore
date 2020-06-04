@@ -1,4 +1,3 @@
-Build_JSON_Files.ps1
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
