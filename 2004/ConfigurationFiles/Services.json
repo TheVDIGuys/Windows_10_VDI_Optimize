@@ -10,19 +10,21 @@
     "Description": "GameDVR and Broadcast User Service"
   },
   {
+    "Name": "CaptureService",
+    "VDIState": "Disabled",
+    "Description": "OneCore capture service"
+  },
+  {
     "Name": "CDPSvc",
     "VDIState": "Disabled",
+    "URL": "https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-cdp/929c2238-6d49-4ba4-a36a-37e732c4f736",
     "Description": "Connected Devices Platform Service"
   },
   {
     "Name": "CDPUserSvc",
     "VDIState": "Disabled",
+    "URL": "https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-cdp/929c2238-6d49-4ba4-a36a-37e732c4f736",
     "Description": "Connected Devices Platform User Service"
-  },
-  {
-    "Name": "CscService",
-    "VDIState": "Disabled",
-    "Description": "Offline Files"
   },
   {
     "Name": "defragsvc",
@@ -37,17 +39,18 @@
   {
     "Name": "DiagTrack",
     "VDIState": "Disabled",
-    "Description": "Connected User Experiences and Telemetry"
+    "URL": "https://docs.microsoft.com/en-us/windows/privacy/configure-windows-diagnostic-data-in-your-organization",
+    "Description": "Connected User Experiences and Telemetry service, manages the event driven collection and transmission of diagnostic and usage information (used to improve the experience and quality of the Windows Platform) when the diagnostics and usage privacy option settings are enabled under Feedback and Diagnostics."
   },
   {
     "Name": "DPS",
     "VDIState": "Disabled",
-    "Description": "Diagnostic Policy Service"
+    "Description": "The Diagnostic Policy Service enables problem detection, troubleshooting and resolution for Windows components. If this service is stopped, diagnostics will no longer function."
   },
   {
     "Name": "DsmSvc",
     "VDIState": "Disabled",
-    "Description": "Device Setup Manager"
+    "Description": "Enables the detection, download and installation of device-related software. If this service is disabled, devices may be configured with outdated software, and may not work correctly."
   },
   {
     "Name": "DusmSvc",

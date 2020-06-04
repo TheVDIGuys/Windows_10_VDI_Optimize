@@ -1,8 +1,13 @@
 [
   {
-    "ScheduledTask": "BgTaskRegistrationMaintenanceTask",
+    "ScheduledTask": "AnalyzeSystem",
     "VDIState": "Disabled",
-    "Description": "Maintains registrations for background tasks for Universal Windows Platform applications."
+    "Description": "This task analyzes the system looking for conditions that may cause high energy use."
+  },
+  {
+    "ScheduledTask": "Cellular",
+    "VDIState": "Disabled",
+    "Description": "Related to cellular devices"
   },
   {
     "ScheduledTask": "Consolidator",
@@ -12,7 +17,7 @@
   {
     "ScheduledTask": "Diagnostics",
     "VDIState": "Disabled",
-    "Description": null
+    "Description": "(DiskFootprint in task path) 'DiskFootprint' is the combined contribution of all processes that issue storage I/O in the form of storage reads, writes, and flushes."
   },
   {
     "ScheduledTask": "FamilySafetyMonitor",
@@ -117,7 +122,7 @@
   {
     "ScheduledTask": "Sqm-Tasks",
     "VDIState": "Disabled",
-    "Description": null
+    "Description": "This task gathers information about the Trusted Platform Module (TPM), Secure Boot, and Measured Boot."
   },
   {
     "ScheduledTask": "SR",
@@ -133,11 +138,6 @@
     "ScheduledTask": "SyspartRepair",
     "VDIState": "Disabled",
     "Description": null
-  },
-  {
-    "ScheduledTask": "UpdateLibrary",
-    "VDIState": "Disabled",
-    "Description": "This task updates the cached list of folders and the security permissions on any new files in a user’s shared media library."
   },
   {
     "ScheduledTask": "WindowsActionDialog",
