@@ -2,17 +2,14 @@
   {
     "Name": "autotimesvc",
     "VDIState": "Disabled",
-    "Description": "Cellular Time"
-  },
-  {
-    "Name": "BcastDVRUserService",
-    "VDIState": "Disabled",
-    "Description": "GameDVR and Broadcast User Service"
+    "URL": "https://docs.microsoft.com/en-us/windows-hardware/drivers/network/mb-nitz-support",
+    "Description": "Cellular Time service: this service sets time based on NITZ messages from a Mobile Network"
   },
   {
     "Name": "CaptureService",
     "VDIState": "Disabled",
-    "Description": "OneCore capture service"
+    "URL": "https://docs.microsoft.com/en-us/uwp/api/windows.graphics.capture?view=winrt-19041",
+    "Description": "OneCore capture service: enables optional screen capture functionality for applications that call the Windows.Graphics.Capture API."
   },
   {
     "Name": "CDPSvc",
@@ -23,7 +20,7 @@
   {
     "Name": "CDPUserSvc",
     "VDIState": "Disabled",
-    "URL": "https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-cdp/929c2238-6d49-4ba4-a36a-37e732c4f736",
+    "URL": "https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-cdp/f5a15c56-ac3a-48f9-8c51-07b2eadbe9b4",
     "Description": "Connected Devices Platform User Service"
   },
   {
@@ -45,6 +42,7 @@
   {
     "Name": "DPS",
     "VDIState": "Disabled",
+    "URL": "https://docs.microsoft.com/en-us/uwp/api/Windows.System.Diagnostics?view=winrt-19041",
     "Description": "The Diagnostic Policy Service enables problem detection, troubleshooting and resolution for Windows components. If this service is stopped, diagnostics will no longer function."
   },
   {
@@ -55,17 +53,19 @@
   {
     "Name": "DusmSvc",
     "VDIState": "Disabled",
-    "Description": "Data Usage"
+    "URL": "https://docs.microsoft.com/en-us/uwp/schemas/mobilebroadbandschema/dusm/schema-root",
+    "Description": "Data Usage service: network data usage, data limit, restrict background data, metered networks."
   },
   {
     "Name": "icssvc",
     "VDIState": "Disabled",
-    "Description": "Windows Mobile Hotspot Service"
+    "URL": "https://docs.microsoft.com/en-us/uwp/api/Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration?view=winrt-19041",
+    "Description": "Windows Mobile Hotspot service: provides the ability to share a cellular data connection with another device."
   },
   {
     "Name": "InstallService",
     "VDIState": "Disabled",
-    "Description": "Microsoft Store Install Service"
+    "Description": "Microsoft Store install service. This service is started on demand and if disabled then installations will not function properly."
   },
   {
     "Name": "lfsvc",
