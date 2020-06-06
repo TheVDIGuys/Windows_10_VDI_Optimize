@@ -168,11 +168,11 @@
     "Name": "XboxNetApiSvc",
     "VDIState": "Disabled",
     "Description": "Xbox Live Networking Service"
-  }
+  },
   {
     "Name": "CDPSvc",
     "VDIState": "Disabled",
     "URL": "https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-cdp/da780a95-4b15-4300-8bb9-5da11b9514ab",
     "Description": "Connected Devices Platform Service. This service is used for Connected Devices Platform scenarios"
-  }
+  },
 ]
