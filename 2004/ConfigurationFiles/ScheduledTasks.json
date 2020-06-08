@@ -55,16 +55,6 @@
     "Description": "Background task for performing per user and web interactions"
   },
   {
-    "ScheduledTask": "PerformRemediation",
-    "VDIState": "Disabled",
-    "Description": null
-  },
-  {
-    "ScheduledTask": "ProactiveScan",
-    "VDIState": "Disabled",
-    "Description": "NTFS Volume Health Scan"
-  },
-  {
     "ScheduledTask": "ProcessMemoryDiagnosticEvents",
     "VDIState": "Disabled",
     "Description": "Schedules a memory diagnostic in response to system events."
@@ -83,11 +73,6 @@
     "ScheduledTask": "RecommendedTroubleshootingScanner",
     "VDIState": "Disabled",
     "Description": "Check for recommended troubleshooting from Microsoft"
-  },
-  {
-    "ScheduledTask": "ReconcileLanguageResources",
-    "VDIState": "Disabled",
-    "Description": "Install language components that match the user's language list."
   },
   {
     "ScheduledTask": "RegIdleBackup",
@@ -130,6 +115,12 @@
     "Description": "This task creates regular system protection points."
   },
   {
+    "ScheduledTask": "StartComponentCleanup",
+    "VDIState": "Disabled",
+    "URL": "https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/clean-up-the-winsxs-folder",
+    "Description": "Servicing task that may be better performed during maintenance windows"
+  },
+  {
     "ScheduledTask": "StartupAppTask",
     "VDIState": "Disabled",
     "Description": "Scans startup entries and raises notification to the user if there are too many startup entries."
@@ -152,6 +143,6 @@
   {
     "ScheduledTask": "XblGameSaveTask",
     "VDIState": "Disabled",
-    "Description": "XblGameSave Standby Task"
+    "Description": "Xbox Live GameSave standby task"
   }
 ]
