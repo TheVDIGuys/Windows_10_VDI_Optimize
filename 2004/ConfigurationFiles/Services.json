@@ -6,6 +6,12 @@
     "Description": "Cellular Time service: this service sets time based on NITZ messages from a Mobile Network"
   },
   {
+    "Name": "BcastDVRUserService",
+    "VDIState": "Disabled",
+    "URL": "https://docs.microsoft.com/en-us/windows-hardware/drivers/network/mb-nitz-support",
+    "Description": "This user service is used for Game Recordings and Live Broadcasts"
+  },
+  {
     "Name": "CaptureService",
     "VDIState": "Disabled",
     "URL": "https://docs.microsoft.com/en-us/uwp/api/windows.graphics.capture?view=winrt-19041",

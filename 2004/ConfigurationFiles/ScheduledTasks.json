@@ -47,7 +47,7 @@
   {
     "ScheduledTask": "*MNO*",
     "VDIState": "Disabled",
-    "Description": "Mobile Broadband Account Experience Metadata Parser"
+    "Description": "Mobile broadband account experience metadata parser"
   },
   {
     "ScheduledTask": "NotificationTask",
@@ -67,7 +67,7 @@
   {
     "ScheduledTask": "QueueReporting",
     "VDIState": "Disabled",
-    "Description": "Windows Error Reporting task to process queued reports."
+    "Description": "  "
   },
   {
     "ScheduledTask": "RecommendedTroubleshootingScanner",
