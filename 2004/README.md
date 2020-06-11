@@ -118,3 +118,5 @@ The 2004 scripts, as currently configured, pause all updates, including Quality 
 `Computer Configuration\Administrative Templates\Windows Components\Windows Update\Windows Update for Business\`
 
 `Select when Quality Updates are received	Not configured`
+
+You would also want to reset the 'Update Orchestrator' service to it's initial setting of "Automatic (Delayed Start)".
