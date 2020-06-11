@@ -84,3 +84,6 @@ With the settings included in the LGPO backup, which is restored to the target d
 The reason these settings are in place in these scripts, is in case you deploy these to a target that is Internet connected, your VM may try to "Feature Update" to the current Windows 10 build, which is termed "2004" (as of May 11, 2020).  The settings in place currently, prevent Feature Updates, but also seem to inhibit just downloading monthly updates to the current build.
 To address this for implementations that prefer to allow Windows Update, a new "fork" of these optimization scripts has been created under the main code folder.  The new folder is called "1909_WindowsUpdateEndabled".  Within this folder, the local policy settings (LGPO) have all Windows Update settings "not configured".
 If you need to have Windows Update enabled out of the gate, try the scripts under this folder and raise an issue if any problems are found.
+
+# NOTE: Two new settings added to default user profile
+1. Disable "Inking & typing personalization" in Settings

@@ -1,9 +1,9 @@
 # Introduction 
 Automatically apply settings referenced in white paper:
 
-https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-vdi-recommendations-2004 
+TBD 
 
-These scripts are provided as a means to customize each VDI environment individually, in an easy to use manner.  The text files can be easily edited to prevent removing apps that are desired to be retained.
+These scripts are provided as a means to customize each virtual desktop environment individually, in an easy to use manner.  The text files can be easily edited to prevent removing apps that are desired to be retained.
 
 **NOTE:** As of 4/14/20, these scripts have been tested on **Windows Virtual Desktop (WVD)**.  A number of changes specific to the WVD full desktop experience have been incorporated into the latest version of these scripts.
 
@@ -17,13 +17,13 @@ These scripts are provided as a means to customize each VDI environment individu
 NOTE: This script now takes just over one minute to complete on the reference (gold) device.  The total runtime will be presented at the end, in the status output messages. A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.
 
 # Full Instructions
-1. Download to the reference device, in a folder (ex. C:\VDI_Optimize), the following files:
+1. Download to the reference device, in a folder (ex. C:\Optimize), the following files:
 'Win10_VirtualDesktop_Optimize.ps1'
-2. Download to the reference device, in a folder (ex. C:\VDI_Optimize), the following folders:
+2. Download to the reference device, in a folder (ex. C:\Optimize), the following folders:
 '2004'
 'LGPO'
 3. Start PowerShell elevated
-4. In PowerShell, change directory to the scripts folder (ex. C:\VDI_Optimize)
+4. In PowerShell, change directory to the scripts folder (ex. C:\Optimize)
 5. Run the following PowerShell commands:
 "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned"
 ".\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2004 -Verbose
