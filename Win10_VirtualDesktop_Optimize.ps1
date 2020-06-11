@@ -228,7 +228,7 @@ Get-ChildItem -Path c:\ -Include *.tmp, *.dmp, *.etl, *.evtx, thumbcache*.db, *.
 
 # Delete Direct3D cache for current user
 Write-Verbose "Removing Direct3D Cache"
-Get-ChildItem -Path $env:USERPROFILE\AppData\Local\D3DSCache -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue
+Get-ChildItem -Path $env:USERPROFILE\AppData\Local\D3DSCache -Recurse -Force | Remove-Item -ErrorAction SilentlyContinue | Remove-Item -ErrorAction SilentlyContinue
 
 # Delete "RetailDemo" content (if it exits)
 Write-Verbose "Removing Retail Demo content (if it exists)"
