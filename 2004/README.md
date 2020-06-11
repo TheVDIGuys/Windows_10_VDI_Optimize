@@ -14,7 +14,7 @@ These scripts are provided as a means to customize each virtual desktop environm
  3. The PowerShell script file 'Win10_VirtualDesktop_Optimize.ps1'
  4. The two folders '2004' and 'LGPO'.
 
-NOTE: This script now takes just over one minute to complete on the reference (gold) device.  The total runtime will be presented at the end, in the status output messages. A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.
+NOTE: This script now takes just a few minutes to complete on the reference (gold) device.  The total runtime will be presented at the end, in the status output messages. A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.
 
 # Full Instructions
 1. Download to the reference device, in a folder (ex. C:\Optimize), the following files:
@@ -120,3 +120,7 @@ The 2004 scripts, as currently configured, pause all updates, including Quality 
 `Select when Quality Updates are received	Not configured`
 
 You would also want to reset the 'Update Orchestrator' service to it's initial setting of "Automatic (Delayed Start)".
+
+# Note on disk cleanup (06/11/2020)
+
+Starting with the 2004 version of these scripts, we no longer invoke the Disk Cleanup Wizard (Cleanmgr.exe).  DCW is near end-of-life, but also sometimes "hangs" during running of the scripts.  Instead some basic disk cleanup has been incorporated into the 'Win10_VirtualDesktop_Optimize.ps1' script.  There are logs, traces, and event log files deleted.  If you wish to maintain log files, you can edit the .PS1 script and remove those entries.
