@@ -26,8 +26,27 @@ https://msdn.microsoft.com/en-us/library/cc422938.aspx
 - Disk cleanup                         - Complete
 - Default User Profile Customization   - Complete
 
-This script is dependant on three elements:
-LGPO Settings folder, applied with the LGPO.exe Microsoft app
+# Getting Started
+ ## DEPENDENCIES
+ 1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319) stored in the 'LGPO' folder.
+ 2. Previously saved local group policy settings, available on the GitHub site where this script is located
+ 3. The PowerShell script file 'Win10_VirtualDesktop_Optimize.ps1'
+ 4. The two folders '2004' and 'LGPO'.
+
+NOTE: This script now takes just a few minutes to complete on the reference (gold) device.  The total runtime will be presented at the end, in the status output messages. A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.
+
+ ## Full Instructions
+1. Download to the reference device, in a folder (ex. C:\Optimize), the following files:
+'Win10_VirtualDesktop_Optimize.ps1'
+2. Download to the reference device, in a folder (ex. C:\Optimize), the following folders:
+'2004'
+'LGPO'
+3. Start PowerShell elevated
+4. In PowerShell, change directory to the scripts folder (ex. C:\Optimize)
+5. Run the following PowerShell commands:
+"Set-ExecutionPolicy -ExecutionPolicy RemoteSigned"
+".\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2004 -Verbose
+6. When complete, you should see a prompt to restart.  You do not have to restart right away.
 
 # IMPORTANT ISSUE (01/17/2020)
 IMPORTANT: There is a setting in the current LGPO files that should not be set by default. As of 1/17/10...
@@ -85,5 +104,21 @@ The reason these settings are in place in these scripts, is in case you deploy t
 To address this for implementations that prefer to allow Windows Update, a new "fork" of these optimization scripts has been created under the main code folder.  The new folder is called "1909_WindowsUpdateEndabled".  Within this folder, the local policy settings (LGPO) have all Windows Update settings "not configured".
 If you need to have Windows Update enabled out of the gate, try the scripts under this folder and raise an issue if any problems are found.
 
-# NOTE: Two new settings added to default user profile
-1. Disable "Inking & typing personalization" in Settings
+# NOTE: New settings added to default user profile
+Disable "Inking & typing personalization" in Settings
+
+# MINOR ISSUE (06/11/2020)
+We had removed the "OneConnect" (Mobile Plans) entry from the input file 'AppxPackages.json', because that UWP app is no longer in Windows 10, starting with 2004.  However, the 2004 scripts are backward compatible with 1909, though have not been tested on any build prior to 1909.  Therefore the 'OneConnect' app entry was added back to the AppxPackages.json file.
+
+# Note on Servicing (06/11/2020)
+The 2004 scripts, as currently configured, pause all updates, including Quality Updates.  These settings do not affect Windows Defender, which gets it updates independently. If you want to allow your target machine(s) to contact Windows Update to download and apply updates, you can change the following group policy setting either locally, or in central group policy:
+
+`Computer Configuration\Administrative Templates\Windows Components\Windows Update\Windows Update for Business\`
+
+`Select when Quality Updates are received	Not configured`
+
+You would also want to reset the 'Update Orchestrator' service to it's initial setting of "Automatic (Delayed Start)".
+
+# Note on disk cleanup (06/11/2020)
+
+Starting with the 2004 version of these scripts, we no longer invoke the Disk Cleanup Wizard (Cleanmgr.exe).  DCW is near end-of-life, but also sometimes "hangs" during running of the scripts.  Instead some basic disk cleanup has been incorporated into the 'Win10_VirtualDesktop_Optimize.ps1' script.  There are logs, traces, and event log files deleted.  If you wish to maintain log files, you can edit the .PS1 script and remove those entries.
