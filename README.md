@@ -25,7 +25,7 @@ A new version of this paper for Windows 10 2004 is pending publication as of 06/
 A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.  
 Also, the "-verbose" parameter in PowerShell directs the script to provide descriptive output as the script is running.
 
- ## Full Instructions
+ ## Full Instructions (for Windows 10 2004, OR Windows 10 1909)
 1. Download to the reference device, in a folder (ex. C:\Optimize), the following files:
 'Win10_VirtualDesktop_Optimize.ps1'
 2. Download to the reference device, in a folder (ex. C:\Optimize), the following folders:
@@ -33,9 +33,9 @@ Also, the "-verbose" parameter in PowerShell directs the script to provide descr
 'LGPO'
 3. Start PowerShell elevated
 4. In PowerShell, change directory to the scripts folder (ex. C:\Optimize)
-5. Run the following PowerShell commands:
-"Set-ExecutionPolicy -ExecutionPolicy RemoteSigned"
-".\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2004 -Verbose
+5. Run the following PowerShell commands:  
+**"Set-ExecutionPolicy -ExecutionPolicy RemoteSigned"**  
+**".\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2004 -Verbose**  
 6. When complete, you should see a prompt to restart.  You do not have to restart right away.
 
 # IMPORTANT ISSUE (01/17/2020)
