@@ -26,19 +26,20 @@ A prompt to reboot will appear when the script has comoletely finished running. 
 Also, the "-verbose" parameter in PowerShell directs the script to provide descriptive output as the script is running.
 
  ## Full Instructions (for Windows 10 2004, OR Windows 10 1909)
-1. Download to the reference device, in a folder (ex. C:\Optimize), the following files:
+ **NOTE** The PowerShell command to start the optimization tool is the same on 1909 or 2004
+1. Download to the reference device, in a folder (ex. C:\Optimize), the following file:
 'Win10_VirtualDesktop_Optimize.ps1'
 2. Download to the reference device, in a folder (ex. C:\Optimize), the following folders:
 '2004'
 'LGPO'
 3. Start PowerShell elevated
 4. In PowerShell, change directory to the scripts folder (ex. C:\Optimize)
-5. Run the following PowerShell commands:  
-**"Set-ExecutionPolicy -ExecutionPolicy RemoteSigned"**  
-**".\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2004 -Verbose**  
+5. Run the following PowerShell commands:</br></br>
+        ``Set-ExecutionPolicy -ExecutionPolicy RemoteSigned``</br>
+        ``.\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2004 -Verbose``</br></br>
 6. When complete, you should see a prompt to restart.  You do not have to restart right away.
 
-# IMPORTANT ISSUE (01/17/2020)
+# IMPORTANT ISSUE (01/17/2020) (Resolved)
 IMPORTANT: There is a setting in the current LGPO files that should not be set by default. As of 1/17/10...
 a fix has been checked in to the "Pending" branch.  Once we confirm that resolves the issue we will merge...
 into the "Master" branch.  The issue is that Windows will not check certificate information, and thus...
@@ -50,13 +51,13 @@ The set the policy to "not configured".  Here is the location of the policy sett
 ```
 Turn off Automatic Root Certificates Update
 ```
-# IMPORTANT ISSUE (01/27/2020)
+# IMPORTANT ISSUE (01/27/2020) (Resolved)
 A new issue was discovered recently regarding the 'CDPSvc'. If that service is disabled, and
 a new user logs on to the computer then opens 'System Settings' to view display settings,
 'SystemSettings.exe' will crash and log an error to the event log with code "fatal app exit".
 We removed the entry 'CDPSvc' from 'Win10_1909_ServicesDisable.txt' as a result.
 
-# Low-impact ISSUE (04/20/2020)
+# Low-impact ISSUE (04/20/2020) (Resolved)
 Previously these scripts had a local policy setting at this location set to disabled:
 
 **Local Computer Policy \ Computer Configuration \ Administrative Templates \ System \ Internet Communication Management \ Internet Communication settings**
@@ -65,14 +66,14 @@ Turn off Windows Network Connectivity Status Indicator active tests
 ```
 With the active tests disabled, Office 365 is not able to contact it's licensing service, and therefore would not run any of the Office apps.  This setting has been changed back to "Not configured" in the included LGPO file.
 
-# Low-impact ISSUE (04/22/2020)
+# Low-impact ISSUE (04/22/2020) (Resolved)
 
 In some virtual environments, such as Azure Windows Virtual Desktop, some of the application windows will have no border.  An example is Windows File Explorer.  You can replicate this by opening Wordpad and File Explorer, then move then around and note that you may not see a border where one app starts and the other ends.
 One of the optimizations in the latest drop changes the Visual Effects settings (found in System Properties) to reduce animations and effects, while still maintaining a good user experience such as "smoothing screen fonts".
 The other two optimizations: "show shadows under mouse pointer" and "Show shadows under windows" will enable a shadow effect around the windows like File Explorer, so that the border of the app is now visible.
 These settings are written to the default user profile registry hive, so would apply only to users whose profile is created after these optimizations run, and on this computer.
 
-# 1909 Low-impact ISSUE (04/29/2020)
+# 1909 Low-impact ISSUE (04/29/2020) (Resolved)
 **Apps running in the background**
 Several of the built-in UWP apps, such as Skype, Phone, and Photos, will start processes and run in the background, even though the user has not started the app(s).  On a single machine this is near-zero impact, but on multi-session Windows, it can be a slightly larger impact issue.  There is a setting in the 'Settings' app, under 'Background apps' that allows you to control this behavior on a per-user basis.  However, there is currently no way to change this behavior as a global setting, other than to completely uninstall the app.
 
@@ -87,7 +88,7 @@ If you would like to keep one or more of these apps in your image, and still con
 
 You could also set these settings with Group Policy Preferences, and should take effect after a log off and log back on.
 
-# 1909 Medium-impact ISSUE (05/11/2020)
+# 1909 Medium-impact ISSUE (05/11/2020) (Resolved)
 **WINDOWS UPDATE NOT WORKING**
 With the settings included in the LGPO backup, which is restored to the target during the processing of these scripts, if you attempt to run Windows Update manually, you may not be able to connect.  This is because Feature Updates are disabled via local policy in these scripts.  If you set all Windows Update policies back to "not configured", then run "GPUPDATE /force", now your machine will connect to Windows Update.
 The reason these settings are in place in these scripts, is in case you deploy these to a target that is Internet connected, your VM may try to "Feature Update" to the current Windows 10 build, which is termed "2004" (as of May 11, 2020).  The settings in place currently, prevent Feature Updates, but also seem to inhibit just downloading monthly updates to the current build.
