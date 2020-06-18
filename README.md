@@ -49,8 +49,8 @@ Also, the "-verbose" parameter in PowerShell directs the script to provide descr
 
 # IMPORTANT ISSUE (06/18/2020) (Resolved)
 Windows 10 Multi-Session has different 'Privilege Rights' than standard Windows 10.  To this point, these optimization scripts have been based on "normal" Windows 10.</br>
-As of 6/18/2020, the 'Privilege Rights', which are set in the LGPO backup files, have been set to match those of Windows 10 Multi-Session.</br>
-One example is the "Shut down the system" privilege.  In traditional Windows 10, members of the **'Users'** user group could shut down the machine. In Multi-Session members of the **'Users'** group cannot shut down the system.
+As of 6/18/2020, the "Secedit" and "Audit" files have been deleted from the LGPO backup. Now the only settings applied are local registry settings</br>
+Therefore, any differences in security settings based on SKU will not be change by this optimization tool.</br>
 
 # Note on disk cleanup (06/11/2020)
 Starting with the 2004 version of these scripts, we no longer invoke the Disk Cleanup Wizard (Cleanmgr.exe).  DCW is near end-of-life, but also sometimes "hangs" during running of the scripts.  Instead some basic disk cleanup has been incorporated into the 'Win10_VirtualDesktop_Optimize.ps1' script.  There are logs, traces, and event log files deleted.  If you wish to maintain log files, you can edit the .PS1 script and remove those entries.
