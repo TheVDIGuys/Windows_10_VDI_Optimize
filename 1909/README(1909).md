@@ -1,7 +1,7 @@
 # Introduction 
 Automatically apply settings referenced in white paper:
 
-https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-vdi-recommendations-1909 
+https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds_vdi-recommendations-1909 
 
 These scripts are provided as a means to customize each VDI environment individually, in an easy to use manner.  The text files can be easily edited to prevent removing apps that are desired to be retained.
 
