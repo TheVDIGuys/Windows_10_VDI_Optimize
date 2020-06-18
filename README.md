@@ -1,25 +1,28 @@
 # Introduction 
-Automatically apply setting referenced in white paper:
+Automatically apply settings referenced in white papers:</br>
 "Optimizing Windows 10, version 1909, for a Virtual Desktop Infrastructure (VDI) role"  
 URL: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds_vdi-recommendations-1909  
 This information will be updated once later versions are published on docs.microsoft.com.  
-A new version of this paper for Windows 10 2004 is pending publication as of 06/11/2020.
+A new version of this paper for Windows 10 2004 is pending publication as of 06/18/2020.
 
 # Getting Started
 
  ## REFERENCES:
- https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx
- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6
- https://blogs.technet.microsoft.com/secguide/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0/
- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-6
- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6
+ https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx  
+ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6  
+ https://blogs.technet.microsoft.com/secguide/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0/  
+ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-6  
+ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6  
  https://msdn.microsoft.com/en-us/library/cc422938.aspx
+
+ ## CUSTOMIZATION
+ You can customize your deployments by editing the .JSON or .TXT input files.
 
  ## DEPENDENCIES
  1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319) stored in the 'LGPO' folder.
  2. Previously saved local group policy settings, available on the GitHub site where this script is located
  3. The PowerShell script file 'Win10_VirtualDesktop_Optimize.ps1'
- 4. The two folders '2004' and 'LGPO'.
+ 4. The configuration folders (Ex. '\2004' and '\LGPO' OR '\1909' and '\LGPO') 
 
 **NOTE:** This script now takes just a few minutes to complete on the reference (gold) device. The total runtime will be presented at the end, in the status output messages.  
 A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.  
@@ -27,17 +30,13 @@ Also, the "-verbose" parameter in PowerShell directs the script to provide descr
 
  ## Full Instructions (for Windows 10 2004, OR Windows 10 1909)
  **NOTE** The PowerShell command to start the optimization tool is the same on 1909 or 2004
-1. Download to the reference device, in a folder (ex. C:\Optimize), the following file:
-'Win10_VirtualDesktop_Optimize.ps1'
-2. Download to the reference device, in a folder (ex. C:\Optimize), the following folders:
-'2004'
-'LGPO'
-3. Start PowerShell elevated
-4. In PowerShell, change directory to the scripts folder (ex. C:\Optimize)
-5. Run the following PowerShell commands:</br></br>
+1. Download to the reference device, in a folder (ex. C:\Optimize), this entire GitHub repository:</br>
+2. Start PowerShell elevated
+3. In PowerShell, change directory to the scripts folder (ex. C:\Optimize)
+4. Run the following PowerShell commands:</br></br>
         ``Set-ExecutionPolicy -ExecutionPolicy RemoteSigned``</br>
-        ``.\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion 2004 -Verbose``</br></br>
-6. When complete, you should see a prompt to restart.  You do not have to restart right away.
+        ``.\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion <Windows Version> -Verbose``</br></br>
+5. When complete, you should see a prompt to restart.  You do not have to restart right away.
 
 # IMPORTANT ISSUE (01/17/2020) (Resolved)
 IMPORTANT: There is a setting in the current LGPO files that should not be set by default. As of 1/17/10...
