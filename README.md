@@ -31,9 +31,7 @@ A new version of this paper for Windows 10 2004 is pending publication as of 06/
 
  ## DEPENDENCIES
  1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319) stored in the 'LGPO' folder.
- 2. Previously saved local group policy settings, available on the GitHub site where this script is located
- 3. The PowerShell script file 'Win10_VirtualDesktop_Optimize.ps1'
- 4. The configuration folders (Ex. '\2004' and '\LGPO' OR '\1909' and '\LGPO') 
+ 2. Download and expand the entire repository to your target machine.
 
 **NOTE:** This script now takes just a few minutes to complete on the reference (gold) device. The total runtime will be presented at the end, in the status output messages.  
 A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.  
@@ -41,7 +39,7 @@ Also, the "-verbose" parameter in PowerShell directs the script to provide descr
 
  ## Full Instructions (for Windows 10 2004, OR Windows 10 1909)
  **NOTE** The PowerShell command to start the optimization tool is the same on 1909 or 2004
-1. Download to the reference device, in a folder (ex. C:\Optimize), this entire GitHub repository:</br>
+1. Download to the reference machine, in a folder (ex. C:\Optimize), this entire GitHub repository:</br>
 2. Start PowerShell elevated
 3. In PowerShell, change directory to the scripts folder (ex. C:\Optimize)
 4. Run the following PowerShell commands:</br></br>
