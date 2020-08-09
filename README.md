@@ -1,18 +1,18 @@
-# Introduction 
+# Introduction
 Automatically apply settings referenced in white papers:</br>
-"Optimizing Windows 10, version 1909, for a Virtual Desktop Infrastructure (VDI) role"  
-URL: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds_vdi-recommendations-1909  
-This information will be updated once later versions are published on docs.microsoft.com.  
+"Optimizing Windows 10, version 1909, for a Virtual Desktop Infrastructure (VDI) role"
+URL: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds_vdi-recommendations-1909
+This information will be updated once later versions are published on docs.microsoft.com.
 A new version of this paper for Windows 10 2004 is pending publication as of 06/18/2020.
 
 # Getting Started
 
  ## REFERENCES:
- https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx  
- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6  
- https://blogs.technet.microsoft.com/secguide/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0/  
- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-6  
- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6  
+ https://social.technet.microsoft.com/wiki/contents/articles/7703.powershell-running-executables.aspx
+ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6
+ https://blogs.technet.microsoft.com/secguide/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0/
+ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-6
+ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-6
  https://msdn.microsoft.com/en-us/library/cc422938.aspx
 
  ## CUSTOMIZATION
@@ -33,8 +33,8 @@ A new version of this paper for Windows 10 2004 is pending publication as of 06/
  1. LGPO.EXE (available at https://www.microsoft.com/en-us/download/details.aspx?id=55319) stored in the 'LGPO' folder.
  2. Download and expand the entire repository to your target machine.
 
-**NOTE:** This script now takes just a few minutes to complete on the reference (gold) device. The total runtime will be presented at the end, in the status output messages.  
-A prompt to reboot will appear when the script has comoletely finished running. Wait for this prompt to confirm the script has successfully completed.  
+**NOTE:** This script now takes just a few minutes to complete on the reference (gold) device. The total runtime will be presented at the end, in the status output messages.
+A prompt to reboot will appear when the script has completely finished running. Wait for this prompt to confirm the script has successfully completed.
 Also, the "-verbose" parameter in PowerShell directs the script to provide descriptive output as the script is running.
 
  ## Full Instructions (for Windows 10 2004, OR Windows 10 1909)
@@ -46,6 +46,7 @@ Also, the "-verbose" parameter in PowerShell directs the script to provide descr
         ``Set-ExecutionPolicy -ExecutionPolicy RemoteSigned``</br>
         ``.\Win10_VirtualDesktop_Optimize.ps1 -WindowsVersion <Windows Version> -Verbose``</br></br>
 5. When complete, you should see a prompt to restart.  You do not have to restart right away.
+ **NOTE** When this script is run from the regular PS (non-elevated) it performs only optimizations that do not require Administrator privileges.
 
 # IMPORTANT ISSUE (06/18/2020) (Resolved)
 Windows 10 Multi-Session has different 'Privilege Rights' than standard Windows 10.  To this point, these optimization scripts have been based on "normal" Windows 10.</br>
