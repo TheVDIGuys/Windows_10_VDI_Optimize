@@ -1,3 +1,8 @@
+# UPDATE
+**We have moved to a new location**. There will be no additional updates to this repository.  Moving forward, all updates, fixes, and improvements will be made in the following location on GitHub:
+
+[The Virtual Desktop Team/Virtual Desktop Optimization Tool](https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool)
+
 # Introduction 
 Automatically apply settings referenced in white papers:</br>
 "Optimizing Windows 10, version 1909, for a Virtual Desktop Infrastructure (VDI) role"  
